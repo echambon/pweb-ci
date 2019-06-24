@@ -5,10 +5,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<meta charset="utf-8">
 	<title>Admin board</title>
-	<link rel="stylesheet" href="static/css/admin.css">
-	<link rel="icon" href="static/favicon.ico" />
-	<script type="text/javascript" src="static/js/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript" src="static/js/admin_login.js"></script>
+	<link rel="stylesheet" href="/static/css/admin.css">
+	<link rel="icon" href="/static/favicon.ico" />
+	<script type="text/javascript" src="/static/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="/static/js/admin_login.js"></script>
 </head>
 <body>
 

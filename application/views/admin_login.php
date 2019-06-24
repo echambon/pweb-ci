@@ -1,10 +1,10 @@
 <div id="body">
-	<p>Log in to access administration panel.</p>
+	<p>Log in to access administration panel</p>
 
-	<div id="messageContainer"></div>
-	
+	<p id="messageContainer"></p>
+
 	<p>
-		<form id="loginForm" method=post action="login">
+		<form id="loginForm" method=post action="/admin/login">
 			<table>
 			<tr>
 				<td>Username:</td>
@@ -17,7 +17,7 @@
 			<tr>
 				<td><input type="submit" value="Log in"></td>
 			</tr>
-			</table>
+		</table>
 		</form>
 	</p>
 </div>

@@ -39,6 +39,14 @@ code {
   margin: 0 15px 0 15px;
 }
 
+#menu {
+  margin: 0 15px 0 15px;
+}
+
+#menu a {
+  padding-right: 10px;
+}
+
 p.footer {
   text-align: right;
   font-size: 11px;
