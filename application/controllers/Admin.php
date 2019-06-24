@@ -4,17 +4,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends CI_Controller {
 
 	public $username;
-	public $password;
 
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('admin_model');
+		$this->load->model('logs_model');
 	}
 
 	public function index() {
 		$this->load->view('admin_header');
 		if(isset($_SESSION['user'])) {
-			//
+			// set parameters username
 			$this->username = $_SESSION['user'];
 
 			// setting session data
@@ -51,6 +51,10 @@ class Admin extends CI_Controller {
 				if(password_verify($_POST['password'],$result[0]->password)) {
 					// create session
 					$_SESSION['user'] = $_POST['username'];
+
+					// log connection
+					$this->logs_model->log_admin_connection($_POST['username']);
+
 					$error 		= 0;
 					$message 	= 'Redirecting...';
 				} else {
