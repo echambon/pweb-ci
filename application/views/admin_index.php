@@ -1,3 +1,3 @@
 <div id="body">
-	<p>Welcome to the administration panel <i><?php echo $username; ?></i>!</p>
+	<p>Welcome back <i><?php echo $username; ?></i>!</p>
 </div>

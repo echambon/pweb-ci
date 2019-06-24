@@ -29,7 +29,7 @@ $(document).ready(function() {
 										// redirecting
 										window.setTimeout(function() {
 											window.location.href = '/admin';
-										}, 1500);
+										}, 0);
 									} else {
 										$("#messageContainer").html("<font color='red'>" + json.message + "</font>");
 									}
