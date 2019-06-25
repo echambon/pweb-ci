@@ -32,6 +32,29 @@ class Admin extends CI_Controller {
 	/**
 	 * Public function
 	 *
+	 * Admin settings management page.
+	 *
+	 * @return	void
+	 */
+	 public function settings() {
+	 	if(isset($_SESSION['user'])) {
+				// Loading header & menu
+				$this->load->view('admin_header');
+				$this->load->view('admin_menu');
+
+				// Loading settings view
+				$this->load->view('admin_settings');
+
+				// loading footer
+				$this->load->view('admin_footer');
+		} else {
+			header('Location: /admin');
+		}
+	 }
+
+	/**
+	 * Public function
+	 *
 	 * Perform existence/password checks and logs the user in using POST transmitted data.
 	 *
 	 * @return	void

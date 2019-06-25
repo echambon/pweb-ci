@@ -24,6 +24,25 @@ h1 {
   padding: 14px 15px 10px 15px;
 }
 
+h2 {
+  font-size: 17px;
+}
+
+h2.toggling {
+  padding-left: 22px;
+  cursor: pointer;
+}
+
+h2.toggling_hidden {
+  background: url("/static/img/admin_right_chevron.png") no-repeat;
+  background-size: 20px;
+}
+
+h2.toggling_visible {
+  background: url("/static/img/admin_down_chevron.png") no-repeat;
+  background-size: 20px;
+}
+
 code {
   font-family: Consolas, Monaco, Courier New, Courier, monospace;
   font-size: 12px;
@@ -54,6 +73,10 @@ p.footer {
   line-height: 32px;
   padding: 0 10px 0 10px;
   margin: 20px 0 0 0;
+}
+
+p.toggling_hidden {
+  display: none;
 }
 
 #container {
