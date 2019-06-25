@@ -78,11 +78,11 @@ class Admin extends CI_Controller {
 					$_SESSION['user'] = $_POST['username'];
 
 					$error 			= 0;
-					$log_error 	= ADMIN_LOGIN_NO_ERROR; // information for logs
+					$log_error 	= ADMIN_LOGIN_NO_ERROR;
 					$message 		= 'Redirecting...';
 				} else {
 					$error 			= 1;
-					$log_error 	= ADMIN_LOGIN_ERROR_INCORRECT_PASSWORD; // information for logs
+					$log_error 	= ADMIN_LOGIN_ERROR_INCORRECT_PASSWORD;
 					$message 		= 'Incorrect password';
 				}
 			}
