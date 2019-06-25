@@ -79,6 +79,10 @@ p.toggling_hidden {
   display: none;
 }
 
+div.toggling_hidden {
+  display: none;
+}
+
 #container {
   margin: 10px;
   border: 1px solid #D0D0D0;

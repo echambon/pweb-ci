@@ -14,10 +14,8 @@
 				<td>Password:</td>
 				<td><input type="password" id="password" name="password"></td>
 			</tr>
-			<tr>
-				<td><input type="submit" value="Log in"></td>
-			</tr>
 		</table>
+		<input type="submit" value="Log in">
 		</form>
 	</p>
 </div>
