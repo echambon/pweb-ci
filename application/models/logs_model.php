@@ -7,7 +7,7 @@ class logs_model extends CI_Model {
    *
    * @return	void
    */
-  public function log_admin_connection($username) {
+  public function log_admin_connection($username,$log_error_id) {
     // current datetime
     $login_date = date("Y-m-d H:i:s");
 
@@ -15,7 +15,7 @@ class logs_model extends CI_Model {
     $ip_address = $this->get_user_ip_address();
 
     // insert row in pw_logs
-    $this->db->query("INSERT INTO pw_logs (username, login_date, ip_address) VALUES('".$username."', '".$login_date."', '".$ip_address."')");
+    $this->db->query("INSERT INTO pw_logs (username, login_date, ip_address, error) VALUES('".$username."', '".$login_date."', '".$ip_address."', '".$log_error_id."')");
     //return $query->result();
   }
 

@@ -93,3 +93,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 |
 */
 define('PWEB_VERSION','1.0.0');
+define('ADMIN_LOGIN_NO_ERROR',0);
+define('ADMIN_LOGIN_ERROR_EMPTY_POST',1);
+define('ADMIN_LOGIN_ERROR_USERNAME_NOT_FOUND',2);
+define('ADMIN_LOGIN_ERROR_INCORRECT_PASSWORD',3);

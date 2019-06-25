@@ -61,33 +61,37 @@ class Admin extends CI_Controller {
 	 */
 	public function login() {
 		// default messages
-		$error 		= 1;
-		$message 	= 'Empty post request';
+		$error 			= 1;
+		$log_error 	= ADMIN_LOGIN_ERROR_EMPTY_POST;
+		$message 		= 'Empty post request';
 
 		if(!empty($_POST['username']) && !empty($_POST['password'])) {
 			// try to get user by username
 			$result = $this->admin_model->get_user_by_username($_POST['username']);
 			if(empty($result)) {
-				$error 		= 1;
-				$message 	= 'Username not found';
+				$error 			= 1;
+				$log_error 	= ADMIN_LOGIN_ERROR_USERNAME_NOT_FOUND;
+				$message 		= 'Username not found';
 			} else {
 				if(password_verify($_POST['password'],$result[0]->password)) {
 					// create session
 					$_SESSION['user'] = $_POST['username'];
 
-					// log connection
-					$this->logs_model->log_admin_connection($_POST['username']);
-
-					$error 		= 0;
-					$message 	= 'Redirecting...';
+					$error 			= 0;
+					$log_error 	= ADMIN_LOGIN_NO_ERROR; // information for logs
+					$message 		= 'Redirecting...';
 				} else {
-					$error 		= 1;
-					$message 	= 'Incorrect password';
+					$error 			= 1;
+					$log_error 	= ADMIN_LOGIN_ERROR_INCORRECT_PASSWORD; // information for logs
+					$message 		= 'Incorrect password';
 				}
 			}
 		} else {
 			header('Location: /admin');
 		}
+
+		// log connection
+		$this->logs_model->log_admin_connection($_POST['username'],$log_error);
 
 		echo json_encode(['error' => $error, 'message' => $message]);
 	}
