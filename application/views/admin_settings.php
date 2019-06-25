@@ -38,7 +38,7 @@
   <h2 id="toggling_logs_header" class="togglingHeader toggling toggling_hidden">Logs</h2>
   <div id="toggling_other_container" class="togglingContainer toggling_hidden">
     <p>
-      Connections to administration panel logs configuration:
+      Configure logs when attempting connection to administration panel:
     </p>
     <form id="logsSettingsForm" method=post action="/admin/logs_settings_update">
 			<table>
