@@ -16,7 +16,6 @@ class logs_model extends CI_Model {
 
     // insert row in pw_logs
     $this->db->query("INSERT INTO pw_logs (username, login_date, ip_address, error) VALUES('".$username."', '".$login_date."', '".$ip_address."', '".$log_error_id."')");
-    //return $query->result();
   }
 
   /**
