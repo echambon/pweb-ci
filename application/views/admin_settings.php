@@ -11,12 +11,12 @@
 			<table>
   			<tr>
   				<td>Username:</td>
-  				<td><input type="text" id="admin_username" name="admin_username" size="50" value="<?php echo $username; ?>"></td>
+  				<td><input type="text" id="admin_username" name="admin_username" size="50" value="<?php echo $username; ?>"><font color="red" size="5"><b>*</b></font></td>
           <td><i>This is the administrator login username.</i></td>
   			</tr>
   			<tr>
   				<td>Current password:</td>
-  				<td><input type="password" id="admin_current_password" name="admin_current_password" size="50" value=""></td>
+  				<td><input type="password" id="admin_current_password" name="admin_current_password" size="50" value=""><font color="red" size="5"><b>*</b></font></td>
           <td><i>Current administrator password. Required for all administrator profile modifications.</i></td>
   			</tr>
         <tr>
@@ -48,7 +48,7 @@
 			<table>
   			<tr>
   				<td>Title:</td>
-  				<td><input type="text" id="website_title" name="website_title" size="50" value="<?php echo $website_title; ?>"></td>
+  				<td><input type="text" id="website_title" name="website_title" size="50" value="<?php echo $website_title; ?>"><font color="red" size="5"><b>*</b></font></td>
           <td><i>The title appears at the top of any page and also in the navigator tab title.</i></td>
   			</tr>
   			<tr>

@@ -76,4 +76,19 @@ class admin_model extends CI_Model {
     // MySQL query
     $this->db->query("UPDATE pw_settings SET website_title='".$title."', website_subtitle='".$subtitle."', website_keywords='".$keywords."', website_homepage_id='".$homepage_id."'");
   }
+
+  /**
+  * Public function
+  *
+  * Updates admin user profile.
+  *
+  * @return	void
+  */
+  public function set_user_profile($id, $username, $password, $email) {
+    // hash password
+    $hashed_password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+
+    // MySQL query
+    $this->db->query("UPDATE pw_users SET username='".$username."', password='".$hashed_password."', email='".$email."' WHERE id='".$id."'");
+  }
 }

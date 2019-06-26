@@ -121,12 +121,12 @@ class Admin extends CI_Controller {
 	}
 
 	/**
-	 * Public function
-	 *
-	 * Updates logs settings.
-	 *
-	 * @return	void
-	 */
+	* Public function
+	*
+	* Updates logs settings.
+	*
+	* @return	void
+	*/
 	public function logs_settings_update() {
 		$this->session_check();
 
@@ -154,12 +154,12 @@ class Admin extends CI_Controller {
 	}
 
 	/**
-	 * Public function
-	 *
-	 * Updates website settings.
-	 *
-	 * @return	void
-	 */
+	* Public function
+	*
+	* Updates website settings.
+	*
+	* @return	void
+	*/
 	public function website_settings_update() {
 		$this->session_check();
 
@@ -167,7 +167,8 @@ class Admin extends CI_Controller {
 		$error 									= ERROR_EMPTY_POST;
 		$message 								= 'Empty post request';
 
-		if(!empty($_POST['website_title']) && !empty($_POST['website_subtitle']) && !empty($_POST['website_keywords'])) {
+		// allow subtitle and keywords to be empty
+		if(!empty($_POST['website_title'])) {
 			$title 				= $_POST['website_title'];
 			$subtitle 		= $_POST['website_subtitle'];
 			$keywords 		= $_POST['website_keywords'];
@@ -182,35 +183,63 @@ class Admin extends CI_Controller {
 			header('Location: /admin/settings');
 		}
 
-		echo json_encode(['error' => $error, 'message' => $message]);
+		echo 	json_encode(['error' => $error, 'message' => $message]);
 	}
 
 	/**
-	 * Public function
-	 *
-	 * Logs the user out.
-	 *
-	 * @return	void
-	 */
+	* Public function
+	*
+	* Updates admin profile.
+	*
+	* @return	void
+	*/
+	public function admin_profile_update() {
+		$this->session_check();
+
+		// todo
+		$userdata = $this->admin_model->get_user_by_username($_SESSION['user']);
+		$id = $userdata[0]->id;
+
+		// $this->admin_model->set_user_profile(...);
+	}
+
+	/**
+	* Public function
+	*
+	* Logs the user out.
+	*
+	* @return	void
+	*/
 	public function logout() {
-	 session_destroy(); // view if CI has better option
-	 header('Location: /admin');
+		session_destroy(); // view if CI has better option
+		header('Location: /admin');
 	}
 
 	/**
-	 * Private function
-	 *
-	 * Checks if session is active, redirects to admin index otherwise.
-	 *
-	 * @return	void
-	 */
+	* Private function
+	*
+	* Checks if session is active, redirects to admin index otherwise.
+	*
+	* @return	void
+	*/
 	private function session_check() {
 		if(!isset($_SESSION['user'])) {
 			header('Location: /admin');
 		}
 	}
 
+	/**
+	* Private function
+	*
+	* Connection logs display page.
+	*
+	* @return	void
+	*/
+	public function logs() {
+		$this->session_check();
 
+		// todo
+	}
 
 
 
@@ -222,5 +251,9 @@ class Admin extends CI_Controller {
 	private function get_log_failed_attempts_activated() {
 	 $settings = $this->admin_model->get_website_settings();
 	 return $settings[0]->log_failed_attempts_activated;
+	}
+	private function get_user_id($username) {
+		$profile = $this->admin_model->get_user_by_username($username);
+		return $profile[0]->id;
 	}
 }

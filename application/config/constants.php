@@ -103,3 +103,4 @@ define('ADMIN_LOGIN_ERROR_INCORRECT_PASSWORD',3);
 // other generic errors
 define('NO_ERROR',0);
 define('ERROR_EMPTY_POST',1);
+define('ERROR_EMPTY_REQUIRED_FIELD',2);
