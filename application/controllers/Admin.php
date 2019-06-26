@@ -32,39 +32,37 @@ class Admin extends CI_Controller {
 	 * @return	void
 	 */
 	 public function settings() {
-	 	if(isset($_SESSION['user'])) {
-				// Loading header & menu
-				$this->load->view('admin_header');
-				$this->load->view('admin_menu');
+	 		$this->session_check();
 
-				// getting admin profile data
-				$profile_data = $this->admin_model->get_user_by_username($_SESSION['user']);
+			// Loading header & menu
+			$this->load->view('admin_header');
+			$this->load->view('admin_menu');
 
-				// getting website settings data
-				$website_settings_data = $this->admin_model->get_website_settings();
-				// todo: get page title from $website_settings_data[0]->website_homepage_id
+			// getting admin profile data
+			$profile_data = $this->admin_model->get_user_by_username($_SESSION['user']);
 
-				// setting checked status
-				$log_successful_connection 			= ($website_settings_data[0]->log_successful_connection_activated == 1 ? "checked" : "");
-				$log_failed_attempts_activated 	= ($website_settings_data[0]->log_failed_attempts_activated == 1 ? "checked" : "");
+			// getting website settings data
+			$website_settings_data = $this->admin_model->get_website_settings();
+			// todo: get page title from $website_settings_data[0]->website_homepage_id
 
-				// setting data
-				$data = array('username' 					=> $profile_data[0]->username,
-											'email' 						=> $profile_data[0]->email,
-											'website_title' 		=> $website_settings_data[0]->website_title,
-											'website_subtitle' 	=> $website_settings_data[0]->website_subtitle,
-											'website_keywords' 	=> $website_settings_data[0]->website_keywords,
-											'log_success' 			=> $log_successful_connection,
-											'log_failed' 				=> $log_failed_attempts_activated);
+			// setting checked status
+			$log_successful_connection 			= ($website_settings_data[0]->log_successful_connection_activated == 1 ? "checked" : "");
+			$log_failed_attempts_activated 	= ($website_settings_data[0]->log_failed_attempts_activated == 1 ? "checked" : "");
 
-				// Loading settings view
-				$this->load->view('admin_settings',$data);
+			// setting data
+			$data = array('username' 					=> $profile_data[0]->username,
+										'email' 						=> $profile_data[0]->email,
+										'website_title' 		=> $website_settings_data[0]->website_title,
+										'website_subtitle' 	=> $website_settings_data[0]->website_subtitle,
+										'website_keywords' 	=> $website_settings_data[0]->website_keywords,
+										'log_success' 			=> $log_successful_connection,
+										'log_failed' 				=> $log_failed_attempts_activated);
 
-				// loading footer
-				$this->load->view('admin_footer');
-		} else {
-			header('Location: /admin');
-		}
+			// Loading settings view
+			$this->load->view('admin_settings',$data);
+
+			// loading footer
+			$this->load->view('admin_footer');
 	 }
 
 	/**
@@ -130,6 +128,8 @@ class Admin extends CI_Controller {
 	 * @return	void
 	 */
 	public function logs_settings_update() {
+		$this->session_check();
+
 		// default values
 		$error 									= ERROR_EMPTY_POST;
 		$message 								= 'Empty post request';
@@ -156,28 +156,71 @@ class Admin extends CI_Controller {
 	/**
 	 * Public function
 	 *
+	 * Updates website settings.
+	 *
+	 * @return	void
+	 */
+	public function website_settings_update() {
+		$this->session_check();
+
+		// default values
+		$error 									= ERROR_EMPTY_POST;
+		$message 								= 'Empty post request';
+
+		if(!empty($_POST['website_title']) && !empty($_POST['website_subtitle']) && !empty($_POST['website_keywords'])) {
+			$title 				= $_POST['website_title'];
+			$subtitle 		= $_POST['website_subtitle'];
+			$keywords 		= $_POST['website_keywords'];
+			$homepage_id 	= 0; // todo
+
+			// update general website settings
+			$this->admin_model->set_website_settings($title,$subtitle,$keywords,$homepage_id);
+
+			$error 		= NO_ERROR;
+			$message 	= 'Update website settings successfully';
+		} else  {
+			header('Location: /admin/settings');
+		}
+
+		echo json_encode(['error' => $error, 'message' => $message]);
+	}
+
+	/**
+	 * Public function
+	 *
 	 * Logs the user out.
 	 *
 	 * @return	void
 	 */
-	 public function logout() {
-		 session_destroy(); // view if CI has better option
-		 header('Location: /admin');
-	 }
+	public function logout() {
+	 session_destroy(); // view if CI has better option
+	 header('Location: /admin');
+	}
+
+	/**
+	 * Private function
+	 *
+	 * Checks if session is active, redirects to admin index otherwise.
+	 *
+	 * @return	void
+	 */
+	private function session_check() {
+		if(!isset($_SESSION['user'])) {
+			header('Location: /admin');
+		}
+	}
 
 
 
 
 
-
-
-	 // Private getters
-	 private function get_log_successful_connection_activated() {
-		 $settings = $this->admin_model->get_website_settings();
-		 return $settings[0]->log_successful_connection_activated;
-	 }
-	 private function get_log_failed_attempts_activated() {
-		 $settings = $this->admin_model->get_website_settings();
-		 return $settings[0]->log_failed_attempts_activated;
-	 }
+	// Private getters
+	private function get_log_successful_connection_activated() {
+	 $settings = $this->admin_model->get_website_settings();
+	 return $settings[0]->log_successful_connection_activated;
+	}
+	private function get_log_failed_attempts_activated() {
+	 $settings = $this->admin_model->get_website_settings();
+	 return $settings[0]->log_failed_attempts_activated;
+	}
 }
