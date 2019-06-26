@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends CI_Controller {
 
 	public $username;
+	public $last_login;
 
 	public function __construct() {
 		parent::__construct();
@@ -16,9 +17,10 @@ class Admin extends CI_Controller {
 		if(isset($_SESSION['user'])) {
 			// set parameters username
 			$this->username = $_SESSION['user'];
+			$this->last_login = $_SESSION['last_login'];
 
 			// setting session data
-			$data = array('username' => $this->username);
+			$data = array('username' => $this->username, 'last_login' => $this->last_login);
 
 			// loading views
 			$this->load->view('admin_menu');
@@ -76,7 +78,13 @@ class Admin extends CI_Controller {
 				if(password_verify($_POST['password'],$result[0]->password)) {
 					// create session
 					$_SESSION['user'] = $_POST['username'];
+					$last_login_sql = $this->admin_model->get_user_last_login($_POST['username']);
+					$_SESSION['last_login'] = $last_login_sql[0]->last_login;
 
+					// update last login DateTime
+					$this->admin_model->set_user_last_login($_POST['username']);
+
+					// error management
 					$error 			= 0;
 					$log_error 	= ADMIN_LOGIN_NO_ERROR;
 					$message 		= 'Redirecting...';

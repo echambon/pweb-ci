@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 25 juin 2019 à 21:36
+-- Généré le :  mer. 26 juin 2019 à 17:19
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -36,7 +36,25 @@ CREATE TABLE IF NOT EXISTS `pw_logs` (
   `ip_address` varchar(255) NOT NULL,
   `error` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `pw_logs`
+--
+
+INSERT INTO `pw_logs` (`id`, `username`, `login_date`, `ip_address`, `error`) VALUES
+(30, 'admin', '2019-06-26 19:14:40', '::1', 0),
+(29, 'admin', '2019-06-26 19:12:56', '::1', 0),
+(28, 'admin', '2019-06-26 19:10:17', '::1', 0),
+(27, 'admin', '2019-06-26 19:06:00', '::1', 0),
+(26, 'admin', '2019-06-26 19:05:33', '::1', 0),
+(25, 'admin', '2019-06-26 18:59:46', '::1', 0),
+(24, 'admin', '2019-06-26 18:50:15', '::1', 0),
+(23, 'admin', '2019-06-25 23:50:43', '::1', 0),
+(22, 'admin', '2019-06-25 23:41:55', '::1', 0),
+(21, 'admin', '2019-06-25 23:39:50', '::1', 0),
+(31, 'admin', '2019-06-26 19:18:19', '::1', 0),
+(32, 'admin', '2019-06-26 19:18:24', '::1', 0);
 
 -- --------------------------------------------------------
 
@@ -72,6 +90,8 @@ CREATE TABLE IF NOT EXISTS `pw_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `last_login` datetime NOT NULL DEFAULT '2000-01-01 12:00:00',
+  `email` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -79,8 +99,8 @@ CREATE TABLE IF NOT EXISTS `pw_users` (
 -- Déchargement des données de la table `pw_users`
 --
 
-INSERT INTO `pw_users` (`id`, `username`, `password`) VALUES
-(1, 'admin', '$2y$12$vZ0xFzK6rS.iTjUPj8/wy.GdFsOhmpLcEu7BlC1KJrutPrAPTxv/q');
+INSERT INTO `pw_users` (`id`, `username`, `password`, `last_login`, `email`) VALUES
+(1, 'admin', '$2y$12$vZ0xFzK6rS.iTjUPj8/wy.GdFsOhmpLcEu7BlC1KJrutPrAPTxv/q', '2019-06-26 19:18:24', 'admin@domain.ext');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
