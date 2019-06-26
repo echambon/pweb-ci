@@ -53,4 +53,15 @@ class admin_model extends CI_Model {
       $query = $this->db->query("SELECT * FROM pw_settings LIMIT 1");
       return $query->result();
     }
+
+    /**
+     * Public function
+     *
+     * Updates logs activation settings
+     *
+     * @return	void
+     */
+    public function set_logs_activation_settings($log_success,$log_failed) {
+      $this->db->query("UPDATE pw_settings SET log_successful_connection_activated='".$log_success."', log_failed_attempts_activated='".$log_failed."'");
+    }
 }

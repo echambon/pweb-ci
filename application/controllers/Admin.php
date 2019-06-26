@@ -112,7 +112,43 @@ class Admin extends CI_Controller {
 		}
 
 		// log connection
-		$this->logs_model->log_admin_connection($_POST['username'],$log_error);
+		if($this->get_log_successful_connection_activated() && $error == NO_ERROR) {
+			$this->logs_model->log_admin_connection($_POST['username'],$log_error);
+		}
+		if($this->get_log_failed_attempts_activated() && $error != NO_ERROR) {
+			$this->logs_model->log_admin_connection($_POST['username'],$log_error);
+		}
+
+		echo json_encode(['error' => $error, 'message' => $message]);
+	}
+
+	/**
+	 * Public function
+	 *
+	 * Updates logs settings.
+	 *
+	 * @return	void
+	 */
+	public function logs_settings_update() {
+		// default values
+		$error 									= ERROR_EMPTY_POST;
+		$message 								= 'Empty post request';
+		$log_success_activated 	= 0;
+		$log_failed_activated 	= 0;
+
+		if(!empty($_POST['log_success'])) {
+			$log_success_activated = 1;
+		}
+		if(!empty($_POST['log_failed'])) {
+			$log_failed_activated = 1;
+		}
+
+		// update logs activation values
+		$this->admin_model->set_logs_activation_settings($log_success_activated,$log_failed_activated);
+
+		// update error and message values
+		$error 			= NO_ERROR;
+		$message 		= 'Updated logs activation settings successfully';
 
 		echo json_encode(['error' => $error, 'message' => $message]);
 	}
@@ -127,5 +163,21 @@ class Admin extends CI_Controller {
 	 public function logout() {
 		 session_destroy(); // view if CI has better option
 		 header('Location: /admin');
+	 }
+
+
+
+
+
+
+
+	 // Private getters
+	 private function get_log_successful_connection_activated() {
+		 $settings = $this->admin_model->get_website_settings();
+		 return $settings[0]->log_successful_connection_activated;
+	 }
+	 private function get_log_failed_attempts_activated() {
+		 $settings = $this->admin_model->get_website_settings();
+		 return $settings[0]->log_failed_attempts_activated;
 	 }
 }

@@ -10,6 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script type="text/javascript" src="/static/js/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/static/js/admin_login.js"></script>
+	<script type="text/javascript" src="/static/js/admin_settings.js"></script>
 	<script type="text/javascript" src="/static/js/admin_toggling.js"></script>
 </head>
 <body>
