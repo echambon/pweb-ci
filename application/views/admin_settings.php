@@ -8,7 +8,7 @@
   			<table>
     			<tr>
     				<td>Username:</td>
-    				<td><input type="text" id="admin_username" name="admin_username" size="50" value=""></td>
+    				<td><input type="text" id="admin_username" name="admin_username" size="50" value="<?php echo $username; ?>"></td>
             <td><i>This is the administrator login username.</i></td>
     			</tr>
     			<tr>
@@ -28,7 +28,7 @@
     			</tr>
           <tr>
     				<td>e-mail:</td>
-    				<td><input type="text" id="admin_email" name="admin_email" size="50" value=""></td>
+    				<td><input type="text" id="admin_email" name="admin_email" size="50" value="<?php echo $email; ?>"></td>
             <td><i>The title appears at the top of any page and also in the navigator tab title.</i></td>
     			</tr>
   		  </table>
@@ -45,17 +45,17 @@
   			<table>
     			<tr>
     				<td>Title:</td>
-    				<td><input type="text" id="website_title" name="website_title" size="50" value=""></td>
+    				<td><input type="text" id="website_title" name="website_title" size="50" value="<?php echo $website_title; ?>"></td>
             <td><i>The title appears at the top of any page and also in the navigator tab title.</i></td>
     			</tr>
     			<tr>
     				<td>Subtitle:</td>
-    				<td><input type="text" id="website_subtitle" name="website_subtitle" size="50" value=""></td>
+    				<td><input type="text" id="website_subtitle" name="website_subtitle" size="50" value="<?php echo $website_subtitle; ?>"></td>
             <td><i>It will appear under the website title on any page.</i></td>
     			</tr>
           <tr>
     				<td>Keywords:</td>
-    				<td><input type="text" id="website_keywords" name="website_keywords" size="50" value=""></td>
+    				<td><input type="text" id="website_keywords" name="website_keywords" size="50" value="<?php echo $website_keywords; ?>"></td>
             <td><i>Keywords are visible by search engines robots.</i></td>
     			</tr>
           <tr>
@@ -80,12 +80,12 @@
     <form id="logsSettingsForm" method=post action="/admin/logs_settings_update">
 			<table>
   			<tr>
-          <td><input type="checkbox" id="website_title" name="website_title" size="50"></td>
-  				<td>Save each time a user successfully connects to the administration panel</td>
+          <td><input type="checkbox" id="log_success" name="log_success" value="log_success" <?php echo $log_success; ?>>
+  				<label for="log_success">Save each time a user successfully connects to the administration panel</label></td>
   			</tr>
   			<tr>
-          <td><input type="checkbox" id="website_title" name="website_title" size="50"></td>
-  				<td>Save connections attempts to the administration panel</td>
+          <td><input type="checkbox" id="log_failed" name="log_failed" value="log_failed" <?php echo $log_failed; ?>>
+            <label for="log_failed">Save connections attempts to the administration panel</td>
   			</tr>
 		  </table>
     <input type="submit" value="Save">

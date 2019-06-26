@@ -3,9 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
 
-	public $username;
-	public $last_login;
-
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('admin_model');
@@ -15,12 +12,8 @@ class Admin extends CI_Controller {
 	public function index() {
 		$this->load->view('admin_header');
 		if(isset($_SESSION['user'])) {
-			// set parameters username
-			$this->username 	= $_SESSION['user'];
-			$this->last_login = $_SESSION['last_login'];
-
-			// setting session data
-			$data = array('username' => $this->username, 'last_login' => $this->last_login);
+			// setting data
+			$data = array('username' => $_SESSION['user'], 'last_login' => $_SESSION['last_login']);
 
 			// loading views
 			$this->load->view('admin_menu');
@@ -44,8 +37,28 @@ class Admin extends CI_Controller {
 				$this->load->view('admin_header');
 				$this->load->view('admin_menu');
 
+				// getting admin profile data
+				$profile_data = $this->admin_model->get_user_by_username($_SESSION['user']);
+
+				// getting website settings data
+				$website_settings_data = $this->admin_model->get_website_settings();
+				// todo: get page title from $website_settings_data[0]->website_homepage_id
+
+				// setting checked status
+				$log_successful_connection 			= ($website_settings_data[0]->log_successful_connection_activated == 1 ? "checked" : "");
+				$log_failed_attempts_activated 	= ($website_settings_data[0]->log_failed_attempts_activated == 1 ? "checked" : "");
+
+				// setting data
+				$data = array('username' 					=> $profile_data[0]->username,
+											'email' 						=> $profile_data[0]->email,
+											'website_title' 		=> $website_settings_data[0]->website_title,
+											'website_subtitle' 	=> $website_settings_data[0]->website_subtitle,
+											'website_keywords' 	=> $website_settings_data[0]->website_keywords,
+											'log_success' 			=> $log_successful_connection,
+											'log_failed' 				=> $log_failed_attempts_activated);
+
 				// Loading settings view
-				$this->load->view('admin_settings');
+				$this->load->view('admin_settings',$data);
 
 				// loading footer
 				$this->load->view('admin_footer');
