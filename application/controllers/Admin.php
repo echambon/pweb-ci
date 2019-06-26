@@ -16,7 +16,7 @@ class Admin extends CI_Controller {
 		$this->load->view('admin_header');
 		if(isset($_SESSION['user'])) {
 			// set parameters username
-			$this->username = $_SESSION['user'];
+			$this->username 	= $_SESSION['user'];
 			$this->last_login = $_SESSION['last_login'];
 
 			// setting session data

@@ -1,5 +1,42 @@
 <div id="body">
-  <h2 id="toggling_website_header" class="togglingHeader toggling toggling_hidden">Website</h2>
+  <h2 id="toggling_profile_header" class="togglingHeader toggling toggling_hidden toggling_visible">Administrator profile</h2>
+  <div id="toggling_profile_container" class="togglingContainer">
+    <p>
+      Update the administrator user profile:
+    </p>
+    <form id="adminProfileForm" method=post action="/admin/admin_profile_update">
+  			<table>
+    			<tr>
+    				<td>Username:</td>
+    				<td><input type="text" id="admin_username" name="admin_username" size="50" value=""></td>
+            <td><i>This is the administrator login username.</i></td>
+    			</tr>
+    			<tr>
+    				<td>Current password:</td>
+    				<td><input type="password" id="admin_current_password" name="admin_current_password" size="50" value=""></td>
+            <td><i>Current administrator password. Required for all administrator profile modifications.</i></td>
+    			</tr>
+          <tr>
+    				<td>New password:</td>
+    				<td><input type="password" id="admin_new_password" name="admin_new_password" size="50" value=""></td>
+            <td><i>Change password here, leave empty if password should not be changed.</i></td>
+    			</tr>
+          <tr>
+    				<td>Repeat new password:</td>
+    				<td><input type="password" id="admin_new_password_repeat" name="admin_new_password_repeat" size="50" value=""></td>
+            <td><i>Check that the new passwords match.</i></td>
+    			</tr>
+          <tr>
+    				<td>e-mail:</td>
+    				<td><input type="text" id="admin_email" name="admin_email" size="50" value=""></td>
+            <td><i>The title appears at the top of any page and also in the navigator tab title.</i></td>
+    			</tr>
+  		  </table>
+      <input type="submit" value="Save">
+  		</form>
+  </div>
+
+  <h2 id="toggling_website_settings_header" class="togglingHeader toggling toggling_hidden">Website</h2>
   <div id="toggling_website_settings_container" class="togglingContainer toggling_hidden">
     <p>
       Basic website configuration:
@@ -8,17 +45,17 @@
   			<table>
     			<tr>
     				<td>Title:</td>
-    				<td><input type="text" id="website_title" name="website_title" size="50"></td>
+    				<td><input type="text" id="website_title" name="website_title" size="50" value=""></td>
             <td><i>The title appears at the top of any page and also in the navigator tab title.</i></td>
     			</tr>
     			<tr>
     				<td>Subtitle:</td>
-    				<td><input type="text" id="website_subtitle" name="website_subtitle" size="50"></td>
+    				<td><input type="text" id="website_subtitle" name="website_subtitle" size="50" value=""></td>
             <td><i>It will appear under the website title on any page.</i></td>
     			</tr>
           <tr>
     				<td>Keywords:</td>
-    				<td><input type="text" id="website_keywords" name="website_keywords" size="50"></td>
+    				<td><input type="text" id="website_keywords" name="website_keywords" size="50" value=""></td>
             <td><i>Keywords are visible by search engines robots.</i></td>
     			</tr>
           <tr>
