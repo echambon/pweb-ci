@@ -66,6 +66,27 @@ class Admin extends CI_Controller {
 	 }
 
 	/**
+	* Private function
+	*
+	* Connection logs display page.
+	*
+	* @return	void
+	*/
+	public function logs() {
+		$this->session_check();
+
+		// Loading header & menu
+		$this->load->view('admin_header');
+		$this->load->view('admin_menu');
+
+		// Loading logs view
+		$this->load->view('admin_logs');
+
+		// loading footer
+		$this->load->view('admin_footer');
+	}
+
+	/**
 	 * Public function
 	 *
 	 * Perform existence/password checks and logs the user in using POST transmitted data.
@@ -268,19 +289,6 @@ class Admin extends CI_Controller {
 		if(!isset($_SESSION['user'])) {
 			header('Location: /admin');
 		}
-	}
-
-	/**
-	* Private function
-	*
-	* Connection logs display page.
-	*
-	* @return	void
-	*/
-	public function logs() {
-		$this->session_check();
-
-		// todo
 	}
 
 
