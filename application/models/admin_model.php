@@ -84,10 +84,7 @@ class admin_model extends CI_Model {
   *
   * @return	void
   */
-  public function set_user_profile($id, $username, $password, $email) {
-    // hash password
-    $hashed_password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
-
+  public function set_user_profile($id, $username, $hashed_password, $email) {
     // MySQL query
     $this->db->query("UPDATE pw_users SET username='".$username."', password='".$hashed_password."', email='".$email."' WHERE id='".$id."'");
   }
