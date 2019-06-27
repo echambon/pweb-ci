@@ -26,21 +26,19 @@
 	</p>
 
 	<p>
-		<center><table border="1px">
-			<tr>
-				<th id="log_id" 				name="log_id">ID</th>
-				<th id="log_date" 			name="log_date">Date</th>
-				<th id="log_username" 	name="log_username">Username</th>
-				<th id="log_ip" 				name="log_ip">IP</th>
-				<th id="log_error" 			name="log_error">Error</th>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</table></center>
+		<center>
+			Page: 1 2 3 4 5
+
+			<table border="1px">
+				<tr>
+					<th id="log_id" 				name="log_id">ID</th>
+					<th id="log_date" 			name="log_date">Date</th>
+					<th id="log_username" 	name="log_username">Username</th>
+					<th id="log_ip" 				name="log_ip">IP</th>
+					<th id="log_error" 			name="log_error">Error</th>
+				</tr>
+				<?php echo $table_content; ?>
+			</table>
+		</center>
 	</p>
 </div>

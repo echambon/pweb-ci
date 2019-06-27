@@ -79,8 +79,43 @@ class Admin extends CI_Controller {
 		$this->load->view('admin_header');
 		$this->load->view('admin_menu');
 
+		// fetch logs
+		$logs = $this->logs_model->get_logs_ordered_with_limit("","all","0","login_date",1); // todo
+		$table_content = "";
+		if(empty($logs)) {
+			$table_content = "<tr><td colspan='5'><font color='red'><i>No logs to display</i></font></td></tr>";
+		}
+		foreach($logs as $log) {
+			// retrieve error type
+			$error_message = "<font color='green'>ADMIN_LOGIN_NO_ERROR</font>";
+			switch($log->error) {
+				case ADMIN_LOGIN_ERROR_EMPTY_POST:
+					$error_message = "<font color='red'>ADMIN_LOGIN_ERROR_EMPTY_POST</font>";
+					break;
+				case ADMIN_LOGIN_ERROR_USERNAME_NOT_FOUND:
+					$error_message = "<font color='red'>ADMIN_LOGIN_ERROR_USERNAME_NOT_FOUND</font>";
+					break;
+				case ADMIN_LOGIN_ERROR_INCORRECT_PASSWORD:
+					$error_message = "<font color='red'>ADMIN_LOGIN_ERROR_INCORRECT_PASSWORD</font>";
+					break;
+				case ADMIN_LOGIN_ERROR_UNMATCHING_PASSWORD:
+					$error_message = "<font color='red'>ADMIN_LOGIN_ERROR_UNMATCHING_PASSWORD</font>";
+					break;
+			}
+
+			// assign table content
+			$table_content = $table_content . "<tr>
+																							<td>".$log->id."</td>
+																							<td>".$log->login_date."</td>
+																							<td>".$log->username."</td>
+																							<td>".$log->ip_address."</td>
+																							<td>".$error_message."</td>
+																							</tr>";
+		}
+
 		// Loading logs view
-		$this->load->view('admin_logs');
+		$data = array('table_content' => $table_content);
+		$this->load->view('admin_logs', $data);
 
 		// loading footer
 		$this->load->view('admin_footer');

@@ -41,7 +41,7 @@ class logs_model extends CI_Model {
   /**
   * Public function
   *
-  * Get logs data and apply limit/offset/order 
+  * Get logs data and apply limit/offset/order
   *
   * @return	array
   */
@@ -54,9 +54,9 @@ class logs_model extends CI_Model {
 
     if(strcmp($limit,"all") != 0) {
       $sql_query = $sql_query . " LIMIT " . $limit;
+      $sql_query = $sql_query . " OFFSET " . $offset;
     }
 
-    $sql_query = $sql_query . " OFFSET " . $offset;
     $sql_query = $sql_query . " ORDER BY " . $order_by;
 
     if($desc) {
@@ -69,4 +69,6 @@ class logs_model extends CI_Model {
     // return result
     return $query->result();
   }
+
+  // todo : function to count amount of logs
 }
