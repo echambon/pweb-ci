@@ -37,4 +37,36 @@ class logs_model extends CI_Model {
     }
     return $ip;
   }
+
+  /**
+  * Public function
+  *
+  * Get logs data and apply limit/offset/order 
+  *
+  * @return	array
+  */
+  public function get_logs_ordered_with_limit($str_where,$limit,$offset,$order_by,$desc) {
+    $sql_query = "SELECT * FROM pw_logs";
+
+    if(!empty($str_where)) {
+      $sql_query = $sql_query . " WHERE " . $str_where;
+    }
+
+    if(strcmp($limit,"all") != 0) {
+      $sql_query = $sql_query . " LIMIT " . $limit;
+    }
+
+    $sql_query = $sql_query . " OFFSET " . $offset;
+    $sql_query = $sql_query . " ORDER BY " . $order_by;
+
+    if($desc) {
+      $sql_query = $sql_query . " DESC";
+    }
+
+    // execute query
+    $query = $this->db->query($sql_query);
+
+    // return result
+    return $query->result();
+  }
 }
