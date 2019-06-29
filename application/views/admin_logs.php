@@ -35,7 +35,7 @@
 					<th class="order" onclick="sortTable('id')">ID</th>
 					<th class="order" onclick="sortTable('login_date')">Date</th>
 					<th class="order" onclick="sortTable('username')">Username</th>
-					<th class="order" onclick="sortTable('ip_address')">IP</th>
+					<th class="order" onclick="sortTable('ip_address')">IP address</th>
 					<th class="order" onclick="sortTable('error')">error</th>
 				</tr>
 				<?php echo $table_content; ?>
