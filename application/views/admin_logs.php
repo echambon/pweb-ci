@@ -4,7 +4,7 @@
 	</p>
 
 	<p>
-		<form id="logsForm" method=post action="/admin/logs_query">
+		<form id="logsForm" method="post" action="/admin/logs_query">
 			<table>
 				<tr>
 					<td>SQL query: <i>SELECT * FROM pw_logs WHERE </i></td>
@@ -28,14 +28,13 @@
 	<p>
 		<center>
 			Page: 1 2 3 4 5
-
-			<table border="1px">
+			<table id="table_content" border="1px">
 				<tr>
-					<th id="log_id" 				name="log_id">ID</th>
-					<th id="log_date" 			name="log_date">Date</th>
-					<th id="log_username" 	name="log_username">Username</th>
-					<th id="log_ip" 				name="log_ip">IP</th>
-					<th id="log_error" 			name="log_error">Error</th>
+					<th class="order" onClick="sortTable('id')">ID</th>
+					<th class="order" onClick="sortTable('login_date')">Date</th>
+					<th class="order" onClick="sortTable('username')">Username</th>
+					<th class="order" onClick="sortTable('ip_address')">Username</th>
+					<th class="order" onClick="sortTable('error')">error</th>
 				</tr>
 				<?php echo $table_content; ?>
 			</table>

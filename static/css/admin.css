@@ -43,6 +43,10 @@ h2.toggling_visible {
   background-size: 20px;
 }
 
+th.order {
+  cursor: pointer;
+}
+
 code {
   font-family: Consolas, Monaco, Courier New, Courier, monospace;
   font-size: 12px;

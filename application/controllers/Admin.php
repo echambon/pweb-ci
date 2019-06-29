@@ -79,8 +79,15 @@ class Admin extends CI_Controller {
 		$this->load->view('admin_header');
 		$this->load->view('admin_menu');
 
+		// get order
+		if(!empty($_POST["order_by"])) {
+			$order_by = $_POST["order_by"];
+		} else {
+			$order_by = "login_date";
+		}
+
 		// fetch logs
-		$logs = $this->logs_model->get_logs_ordered_with_limit("","all","0","login_date",1); // todo
+		$logs = $this->logs_model->get_logs_ordered_with_limit("","all","0",$order_by,0);
 		$table_content = "";
 		if(empty($logs)) {
 			$table_content = "<tr><td colspan='5'><font color='red'><i>No logs to display</i></font></td></tr>";
