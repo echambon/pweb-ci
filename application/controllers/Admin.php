@@ -103,9 +103,17 @@ class Admin extends CI_Controller {
 
 		// number of pages and html line
 		$pages_number = ceil($logs_number / $logs_to_display);
-		$pages_links = "<a onClick='displayPage(1)'>1</a> "; // by default, only one page
+		// currently selected page
+		$current_page = 1;
+		if(!empty($_POST["current_page"])) {
+			$current_page = $_POST["current_page"];
+		}
+
+		// generate pages links and apply current_page class to currently selected page
+		// todo: rename sortTable and add new inputs to also manage this part!!!
+		$pages_links = "<a onClick='displayPage(1)' " . (($current_page == 1) ? "class='current_page'" : "") . ">1</a> "; // by default, only one page and first page is selected
 		for($i_link = 2; $i_link <= $pages_number; $i_link++) {
-			$pages_links = $pages_links . "<a onClick='displayPage(". strval($i_link) .")'>" . strval($i_link) . "</a> ";
+			$pages_links = $pages_links . "<a onClick='displayPage(". strval($i_link) .")' " . (($current_page == $i_link) ? "class='current_page'" : "") . ">" . strval($i_link) . "</a> ";
 		}
 
 		// fetch logs

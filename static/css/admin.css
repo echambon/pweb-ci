@@ -15,6 +15,10 @@ a {
   cursor: pointer;
 }
 
+a.current_page {
+  font-weight: bold;
+}
+
 h1 {
   color: #444;
   background-color: transparent;
