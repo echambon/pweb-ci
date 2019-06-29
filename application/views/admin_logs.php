@@ -30,11 +30,11 @@
 			Page: 1 2 3 4 5
 			<table id="table_content" border="1px">
 				<tr>
-					<th class="order" onClick="sortTable('id')">ID</th>
-					<th class="order" onClick="sortTable('login_date')">Date</th>
-					<th class="order" onClick="sortTable('username')">Username</th>
-					<th class="order" onClick="sortTable('ip_address')">Username</th>
-					<th class="order" onClick="sortTable('error')">error</th>
+					<th class="order" onclick="sortTable('id')">ID</th>
+					<th class="order" onclick="sortTable('login_date')">Date</th>
+					<th class="order" onclick="sortTable('username')">Username</th>
+					<th class="order" onclick="sortTable('ip_address')">Username</th>
+					<th class="order" onclick="sortTable('error')">error</th>
 				</tr>
 				<?php echo $table_content; ?>
 			</table>
