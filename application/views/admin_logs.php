@@ -1,6 +1,6 @@
 <div id="body">
 	<p>
-		Navigate through connection logs:
+		Navigate through connection logs. There are <b><?php echo $logs_number; ?></b> logs to display.
 	</p>
 
 	<p>
@@ -14,8 +14,8 @@
 					<td>Logs to display per page:</td>
 					<td>
 						<select id="select_logs_display" name="select_logs_display">
-							<option value="10">10</option>
-					    <option value="50" selected="selected">50</option>
+							<option value="10" selected="selected">10</option>
+					    <option value="50">50</option>
 					    <option value="100">100</option>
 					    <option value="all">All</option>
 						</select>
@@ -27,7 +27,7 @@
 
 	<p>
 		<center>
-			Page: 1 2 3 4 5
+			Page: <?php echo $pages_links; ?>
 			<table id="table_content" border="1px">
 				<tr>
 					<th class="order" onclick="sortTable('id')">ID</th>

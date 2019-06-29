@@ -51,16 +51,16 @@ class logs_model extends CI_Model {
     if(!empty($str_where)) {
       $sql_query = $sql_query . " WHERE " . $str_where;
     }
-
-    if(strcmp($limit,"all") != 0) {
-      $sql_query = $sql_query . " LIMIT " . $limit;
-      $sql_query = $sql_query . " OFFSET " . $offset;
-    }
-
+    
     $sql_query = $sql_query . " ORDER BY " . $order_by;
 
     if($desc) {
       $sql_query = $sql_query . " DESC";
+    }
+
+    if(strcmp($limit,"all") != 0) {
+      $sql_query = $sql_query . " LIMIT " . $limit;
+      $sql_query = $sql_query . " OFFSET " . $offset;
     }
 
     // execute query
@@ -71,4 +71,15 @@ class logs_model extends CI_Model {
   }
 
   // todo : function to count amount of logs
+  /**
+  * Public function
+  *
+  * Get number of logs
+  *
+  * @return	array
+  */
+  public function get_logs_number() {
+    $query = $this->db->query("SELECT COUNT(id) AS count FROM pw_logs");
+    return $query->result();
+  }
 }

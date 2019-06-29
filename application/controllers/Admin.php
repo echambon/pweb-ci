@@ -91,8 +91,25 @@ class Admin extends CI_Controller {
 			$desc = 1;
 		}
 
+		// number of logs
+		$logs_number =  $this->get_logs_number();
+		$logs_number = $logs_number['count'];
+
+		// number of logs to display per page
+		$logs_to_display = 10;
+		if(!empty($_POST["logs_to_display"])) {
+			$logs_to_display = $_POST["logs_to_display"];
+		}
+
+		// number of pages and html line
+		$pages_number = ceil($logs_number / $logs_to_display);
+		$pages_links = "1 "; // by default, only one page
+		for($i_link = 2; $i_link <= $pages_number; $i_link++) {
+			$pages_links = $pages_links . strval($i_link) . " ";
+		}
+
 		// fetch logs
-		$logs = $this->logs_model->get_logs_ordered_with_limit("","all","0",$order_by,$desc);
+		$logs = $this->logs_model->get_logs_ordered_with_limit("","10","0",$order_by,$desc);
 		$table_content = "";
 		if(empty($logs)) {
 			$table_content = "<tr><td colspan='5'><font color='red'><i>No logs to display</i></font></td></tr>";
@@ -126,7 +143,9 @@ class Admin extends CI_Controller {
 		}
 
 		// Loading logs view
-		$data = array('table_content' => $table_content);
+		$data = array('table_content' => $table_content,
+									'logs_number' 	=> $logs_number,
+									'pages_links' 	=> $pages_links);
 		$this->load->view('admin_logs', $data);
 
 		// loading footer
@@ -352,5 +371,9 @@ class Admin extends CI_Controller {
 	private function get_user_id($username) {
 		$profile = $this->admin_model->get_user_by_username($username);
 		return $profile[0]->id;
+	}
+	private function get_logs_number() {
+		$out = $this->logs_model->get_logs_number();
+		return json_decode(json_encode($out[0]),true);
 	}
 }
