@@ -51,7 +51,7 @@ class logs_model extends CI_Model {
     if(!empty($str_where)) {
       $sql_query = $sql_query . " WHERE " . $str_where;
     }
-    
+
     $sql_query = $sql_query . " ORDER BY " . $order_by;
 
     if($desc) {
@@ -59,8 +59,8 @@ class logs_model extends CI_Model {
     }
 
     if(strcmp($limit,"all") != 0) {
-      $sql_query = $sql_query . " LIMIT " . $limit;
-      $sql_query = $sql_query . " OFFSET " . $offset;
+      $sql_query = $sql_query . " LIMIT " . strval($limit);
+      $sql_query = $sql_query . " OFFSET " . strval($offset);
     }
 
     // execute query

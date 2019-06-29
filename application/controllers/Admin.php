@@ -103,13 +103,13 @@ class Admin extends CI_Controller {
 
 		// number of pages and html line
 		$pages_number = ceil($logs_number / $logs_to_display);
-		$pages_links = "1 "; // by default, only one page
+		$pages_links = "<a onClick='displayPage(1)'>1</a> "; // by default, only one page
 		for($i_link = 2; $i_link <= $pages_number; $i_link++) {
-			$pages_links = $pages_links . strval($i_link) . " ";
+			$pages_links = $pages_links . "<a onClick='displayPage(". strval($i_link) .")'>" . strval($i_link) . "</a> ";
 		}
 
 		// fetch logs
-		$logs = $this->logs_model->get_logs_ordered_with_limit("","10","0",$order_by,$desc);
+		$logs = $this->logs_model->get_logs_ordered_with_limit("",$logs_to_display,0,$order_by,$desc);
 		$table_content = "";
 		if(empty($logs)) {
 			$table_content = "<tr><td colspan='5'><font color='red'><i>No logs to display</i></font></td></tr>";

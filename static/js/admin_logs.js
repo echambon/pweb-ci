@@ -15,3 +15,7 @@ function sortTable(order_by) {
 		}
 	});
 }
+
+function displayPage(test) {
+	$("#messageContainer").html(test);
+}

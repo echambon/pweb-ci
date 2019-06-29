@@ -3,6 +3,8 @@
 		Navigate through connection logs. There are <b><?php echo $logs_number; ?></b> logs to display.
 	</p>
 
+	<p id="messageContainer"></p>
+
 	<p>
 		<form id="logsForm" method="post" action="/admin/logs_query">
 			<table>
@@ -33,7 +35,7 @@
 					<th class="order" onclick="sortTable('id')">ID</th>
 					<th class="order" onclick="sortTable('login_date')">Date</th>
 					<th class="order" onclick="sortTable('username')">Username</th>
-					<th class="order" onclick="sortTable('ip_address')">Username</th>
+					<th class="order" onclick="sortTable('ip_address')">IP</th>
 					<th class="order" onclick="sortTable('error')">error</th>
 				</tr>
 				<?php echo $table_content; ?>
