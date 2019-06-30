@@ -109,6 +109,9 @@ class Admin extends CI_Controller {
 			$current_page = $_POST["current_page"];
 		}
 
+		// resulting offset
+		$offset = ($current_page - 1) * $logs_to_display;
+
 		// generate pages links and apply current_page class to currently selected page
 		// todo: rename sortTable and add new inputs to also manage this part!!!
 		$pages_links = "<a onClick='displayPage(1)' " . (($current_page == 1) ? "class='current_page'" : "") . ">1</a> "; // by default, only one page and first page is selected
@@ -117,7 +120,7 @@ class Admin extends CI_Controller {
 		}
 
 		// fetch logs
-		$logs = $this->logs_model->get_logs_ordered_with_limit("",$logs_to_display,0,$order_by,$desc);
+		$logs = $this->logs_model->get_logs_ordered_with_limit("",$logs_to_display,$offset,$order_by,$desc);
 		$table_content = "";
 		if(empty($logs)) {
 			$table_content = "<tr><td colspan='5'><font color='red'><i>No logs to display</i></font></td></tr>";
