@@ -29,7 +29,9 @@
 
 	<p>
 		<center>
-			Pages: <?php echo $pages_links; ?>
+			<div id="pages_links">
+				Pages: <?php echo $pages_links; ?>
+			</div>
 			<table id="table_content" border="1px">
 				<tr>
 					<th class="order" onclick="sortTable('id')">ID</th>

@@ -113,7 +113,6 @@ class Admin extends CI_Controller {
 		$offset = ($current_page - 1) * $logs_to_display;
 
 		// generate pages links and apply current_page class to currently selected page
-		// todo: rename sortTable and add new inputs to also manage this part!!!
 		$pages_links = "<a onClick='displayPage(1)' " . (($current_page == 1) ? "class='current_page'" : "") . ">1</a> "; // by default, only one page and first page is selected
 		for($i_link = 2; $i_link <= $pages_number; $i_link++) {
 			$pages_links = $pages_links . "<a onClick='displayPage(". strval($i_link) .")' " . (($current_page == $i_link) ? "class='current_page'" : "") . ">" . strval($i_link) . "</a> ";
