@@ -1,5 +1,4 @@
-// todo : retransmit current_page in POST
-function sortTable(order_by,current_page) {
+function sortTable(order_by,current_page,logs_to_display) {
 	var desc = "asc";
 	if($("#table_content").hasClass("desc")) {
 		desc = "desc";
@@ -8,7 +7,12 @@ function sortTable(order_by,current_page) {
 	$.ajax({
 		type: 		"post",
 		url: 			"/admin/logs",
-		data: 	 	{order_by : order_by, desc: desc, current_page : current_page},
+		data: 	 	{
+								order_by 				: order_by,
+								desc 						: desc,
+								current_page 		: current_page,
+								logs_to_display : logs_to_display
+							},
 		success: 	function(data) {
 			var content = $(data).find("#table_content");
 			var pages_id 	= $(data).find("#pages_links");
@@ -19,12 +23,16 @@ function sortTable(order_by,current_page) {
 	});
 }
 
-// todo: retransmit order_by and desc in POST
-function displayPage(current_page,order_by,desc) {
+function displayPage(current_page,order_by,desc,logs_to_display) {
 	$.ajax({
 		type: 		"post",
 		url: 			"/admin/logs",
-		data: 	 	{current_page : current_page, order_by : order_by, desc : desc},
+		data: 	 	{
+								current_page 		: current_page,
+								order_by 				: order_by,
+								desc 						: desc,
+								logs_to_display : logs_to_display
+							},
 		success: 	function(data) {
 			var content 	= $(data).find("#table_content");
 			var pages_id 	= $(data).find("#pages_links");

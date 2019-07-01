@@ -34,11 +34,11 @@
 			</div>
 			<table id="table_content" border="1px">
 				<tr>
-					<th class="order" onclick="sortTable('id',<?php echo $current_page ?>)">ID</th>
-					<th class="order" onclick="sortTable('login_date',<?php echo $current_page ?>)">Date</th>
-					<th class="order" onclick="sortTable('username',<?php echo $current_page ?>)">Username</th>
-					<th class="order" onclick="sortTable('ip_address',<?php echo $current_page ?>)">IP address</th>
-					<th class="order" onclick="sortTable('error',<?php echo $current_page ?>)">error</th>
+					<th class="order" onclick="sortTable('id',<?php echo $current_page . ',' . $logs_to_display; ?>)">ID</th>
+					<th class="order" onclick="sortTable('login_date',<?php echo $current_page . ',' . $logs_to_display; ?>)">Date</th>
+					<th class="order" onclick="sortTable('username',<?php echo $current_page . ',' . $logs_to_display; ?>)">Username</th>
+					<th class="order" onclick="sortTable('ip_address',<?php echo $current_page . ',' . $logs_to_display; ?>)">IP address</th>
+					<th class="order" onclick="sortTable('error',<?php echo $current_page . ',' . $logs_to_display; ?>)">error</th>
 				</tr>
 				<?php echo $table_content; ?>
 			</table>
