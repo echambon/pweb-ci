@@ -2,8 +2,8 @@
 
   <p id="messageContainer"></p>
 
-  <h2 id="toggling_profile_header" class="togglingHeader toggling toggling_hidden">Administrator profile</h2>
-  <div id="toggling_profile_container" class="togglingContainer toggling_hidden">
+  <h2 id="toggling_profile_header" class="togglingHeader toggling toggling_hidden toggling_visible">Administrator profile</h2>
+  <div id="toggling_profile_container" class="togglingContainer">
     <form id="adminProfileForm" method=post action="/admin/admin_profile_update">
       <p>
         Update the administrator user profile:

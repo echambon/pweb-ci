@@ -66,7 +66,7 @@ class Admin extends CI_Controller {
 	 }
 
 	/**
-	* Private function
+	* Public function
 	*
 	* Connection logs display page.
 	*
@@ -159,6 +159,27 @@ class Admin extends CI_Controller {
 									'current_page' 		=> $current_page,
 									'logs_to_display' => $logs_to_display);
 		$this->load->view('admin_logs', $data);
+
+		// loading footer
+		$this->load->view('admin_footer');
+	}
+
+	/**
+	* Public function
+	*
+	* Website pages listing and creation.
+	*
+	* @return	void
+	*/
+	public function pages() {
+		$this->session_check();
+
+		// Loading header & menu
+		$this->load->view('admin_header');
+		$this->load->view('admin_menu');
+
+		// Loading pages view
+		$this->load->view('admin_pages');
 
 		// loading footer
 		$this->load->view('admin_footer');
