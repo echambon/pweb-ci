@@ -86,9 +86,9 @@ class Admin extends CI_Controller {
 		}
 
 		// get asc or desc
-		$desc = 0;
+		$desc = 0; $desc_str = "asc";
 		if(!empty($_POST["desc"]) && strcmp($_POST["desc"],"desc") == 0) {
-			$desc = 1;
+			$desc = 1; $desc_str = "desc";
 		}
 
 		// number of logs
@@ -113,9 +113,9 @@ class Admin extends CI_Controller {
 		$offset = ($current_page - 1) * $logs_to_display;
 
 		// generate pages links and apply current_page class to currently selected page
-		$pages_links = "<a onClick='displayPage(1)' " . (($current_page == 1) ? "class='current_page'" : "") . ">1</a> "; // by default, only one page and first page is selected
+		$pages_links = "<a onClick='displayPage(1,\"" . $order_by ."\",\"" . $desc_str ."\")' " . (($current_page == 1) ? "class='current_page'" : "") . ">1</a> "; // by default, only one page and first page is selected
 		for($i_link = 2; $i_link <= $pages_number; $i_link++) {
-			$pages_links = $pages_links . "<a onClick='displayPage(". strval($i_link) .")' " . (($current_page == $i_link) ? "class='current_page'" : "") . ">" . strval($i_link) . "</a> ";
+			$pages_links = $pages_links . "<a onClick='displayPage(". strval($i_link) .",\"" . $order_by ."\",\"" . $desc_str ."\")' " . (($current_page == $i_link) ? "class='current_page'" : "") . ">" . strval($i_link) . "</a> ";
 		}
 
 		// fetch logs
@@ -155,7 +155,8 @@ class Admin extends CI_Controller {
 		// Loading logs view
 		$data = array('table_content' => $table_content,
 									'logs_number' 	=> $logs_number,
-									'pages_links' 	=> $pages_links);
+									'pages_links' 	=> $pages_links,
+									'current_page' 	=> $current_page);
 		$this->load->view('admin_logs', $data);
 
 		// loading footer
