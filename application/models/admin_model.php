@@ -15,6 +15,18 @@ class admin_model extends CI_Model {
   /**
   * Public function
   *
+  * Gets user data from DB through id column.
+  *
+  * @return	array
+  */
+  public function get_user_by_id($id) {
+    $query = $this->db->query("SELECT * FROM pw_users WHERE id='".$id."' LIMIT 1");
+    return $query->result();
+  }
+
+  /**
+  * Public function
+  *
   * Updates last admin login datetime.
   *
   * @return	array

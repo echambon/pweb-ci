@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 02 juil. 2019 à 19:01
+-- Généré le :  mar. 02 juil. 2019 à 19:31
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -62,6 +62,11 @@ CREATE TABLE IF NOT EXISTS `pw_pages` (
   `url` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
+  `created_on` date NOT NULL DEFAULT '2000-01-01',
+  `created_by` int(11) NOT NULL,
+  `last_modified` date NOT NULL DEFAULT '2000-01-01',
+  `modified_by` int(11) NOT NULL,
+  `menu_order` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -69,8 +74,8 @@ CREATE TABLE IF NOT EXISTS `pw_pages` (
 -- Déchargement des données de la table `pw_pages`
 --
 
-INSERT INTO `pw_pages` (`id`, `name`, `url`, `title`, `content`) VALUES
-(1, 'Testpage', 'testpage', 'This is a testpage.', '&lt;h1&gt;Lorem Ipsum&lt;/h1&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque egestas eros est, a iaculis felis convallis eu. Integer vitae nunc ornare, laoreet augue id, vestibulum neque. Sed ipsum mi, tincidunt ut nisi ullamcorper, volutpat malesuada elit. Duis in mattis eros. Vivamus eu dolor magna. Nunc tincidunt enim sit amet vehicula volutpat. Nulla id ipsum feugiat, commodo magna sed, volutpat tortor.&lt;/p&gt;');
+INSERT INTO `pw_pages` (`id`, `name`, `url`, `title`, `content`, `created_on`, `created_by`, `last_modified`, `modified_by`, `menu_order`) VALUES
+(1, 'Testpage', 'testpage', 'This is a testpage', '&lt;h1&gt;Lorem Ipsum&lt;/h1&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque egestas eros est, a iaculis felis convallis eu. Integer vitae nunc ornare, laoreet augue id, vestibulum neque. Sed ipsum mi, tincidunt ut nisi ullamcorper, volutpat malesuada elit. Duis in mattis eros. Vivamus eu dolor magna. Nunc tincidunt enim sit amet vehicula volutpat. Nulla id ipsum feugiat, commodo magna sed, volutpat tortor.&lt;/p&gt;', '2000-01-01', 1, '2000-01-01', 1, 0);
 
 -- --------------------------------------------------------
 

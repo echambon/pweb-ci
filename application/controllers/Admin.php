@@ -7,6 +7,7 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		$this->load->model('admin_model');
 		$this->load->model('logs_model');
+		$this->load->model('pages_model');
 	}
 
 	public function index() {
@@ -180,8 +181,90 @@ class Admin extends CI_Controller {
 		$this->load->view('admin_header');
 		$this->load->view('admin_menu');
 
+		// get order
+		$order_by = "menu_order";
+		if(!empty($_POST["order_by"])) {
+			$order_by = $_POST["order_by"];
+		}
+
+		// get asc or desc
+		$desc = 0; $desc_str = "asc";
+		if(!empty($_POST["desc"]) && strcmp($_POST["desc"],"desc") == 0) {
+			$desc = 1; $desc_str = "desc";
+		}
+
+		// number of pages
+		$pages_number =  $this->get_pages_number();
+		$pages_number = $pages_number['count'];
+
+		// number of pages to display per page
+		$entries_to_display = 50;
+		if(!empty($_POST["entries_to_display"])) {
+			$entries_to_display = $_POST["entries_to_display"];
+		}
+
+		// number of table pages and html line
+		$table_pages_number = ceil($pages_number / $entries_to_display);
+		// currently selected page
+		$current_page = 1;
+		if(!empty($_POST["current_page"])) {
+			$current_page = $_POST["current_page"];
+		}
+
+		// resulting offset
+		$offset = ($current_page - 1) * $entries_to_display;
+
+		// generate pages links and apply current_page class to currently selected page
+		$pages_links = "<a onClick='displayPage(1,\"" . $order_by ."\",\"" . $desc_str ."\",\"" . $entries_to_display ."\")'" . (($current_page == 1) ? " class='current_page'" : "") . ">1</a> "; // by default, only one page and first page is selected
+		for($i_link = 2; $i_link <= $table_pages_number; $i_link++) {
+			$pages_links = $pages_links . "<a onClick='displayPage(". strval($i_link) .",\"" . $order_by ."\",\"" . $desc_str ."\",\"" . $entries_to_display ."\")'" . (($current_page == $i_link) ? " class='current_page'" : "") . ">" . strval($i_link) . "</a> ";
+		}
+
+		// fetch logs
+		$pages = $this->pages_model->get_pages_ordered_with_limit("",$entries_to_display,$offset,$order_by,$desc);
+		$table_content = "";
+		if(empty($pages)) {
+			$table_content = "<tr><td colspan='5'><font color='red'><i>No pages to display</i></font></td></tr>";
+		}
+		foreach($pages as $page) {
+			// get usernames
+			$created_by_username = $this->admin_model->get_user_by_id($page->created_by);
+			if(!empty($created_by_username)) {
+				$created_by_username = $created_by_username[0]->username;
+			} else {
+				$created_by_username = "<font color='red'>undefined</font>";
+			}
+			$modified_by_username = $this->admin_model->get_user_by_id($page->modified_by);
+			if(!empty($modified_by_username)) {
+				$modified_by_username = $modified_by_username[0]->username;
+			} else {
+				$modified_by_username = "<font color='red'>undefined</font>";
+			}
+
+			// assign table content
+			$table_content = $table_content . "<tr>
+																							<td>".$page->id."</td>
+																							<td><b>".$page->menu_order."</b></td>
+																							<td>".$page->name."</td>
+																							<td>".$page->url."</td>
+																							<td>".$page->title."</td>
+																							<td>".$page->created_on."</td>
+																							<td>".$created_by_username."</td>
+																							<td>".$page->last_modified."</td>
+																							<td>".$modified_by_username."</td>
+																							<td>todo</td>
+																							</tr>";
+		}
+
 		// Loading pages view
-		$this->load->view('admin_pages');
+		$data = array('table_content' 			=> $table_content,
+									'pages_number' 				=> $pages_number,
+									'pages_links' 				=> $pages_links,
+									'current_page' 				=> $current_page,
+									'entries_to_display' 	=> $entries_to_display,
+									'order_by'						=> $order_by,
+									'desc' 								=> $desc_str);
+		$this->load->view('admin_pages',$data);
 
 		// loading footer
 		$this->load->view('admin_footer');
@@ -409,6 +492,10 @@ class Admin extends CI_Controller {
 	}
 	private function get_logs_number() {
 		$out = $this->logs_model->get_logs_number();
+		return json_decode(json_encode($out[0]),true);
+	}
+	private function get_pages_number() {
+		$out = $this->pages_model->get_pages_number();
 		return json_decode(json_encode($out[0]),true);
 	}
 }
