@@ -15,7 +15,7 @@
 				<tr>
 					<td>Entries to display per page:</td>
 					<td>
-						<select id="select_entries_display" name="select_entries_display">
+						<select id="select_entries_display" name="select_entries_display" onchange="test()">
 							<option value="10" selected="selected">10</option>
 					    <option value="50">50</option>
 					    <option value="100">100</option>
