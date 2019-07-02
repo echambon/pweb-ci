@@ -69,8 +69,7 @@ class logs_model extends CI_Model {
     // return result
     return $query->result();
   }
-
-  // todo : function to count amount of logs
+  
   /**
   * Public function
   *
