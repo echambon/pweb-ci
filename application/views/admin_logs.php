@@ -37,7 +37,7 @@
 						<th class="order" onclick="sortTable('login_date',<?php echo $current_page . ',' . $entries_to_display; ?>)">Date</th>
 						<th class="order" onclick="sortTable('username',<?php echo $current_page . ',' . $entries_to_display; ?>)">Username</th>
 						<th class="order" onclick="sortTable('ip_address',<?php echo $current_page . ',' . $entries_to_display; ?>)">IP address</th>
-						<th class="order" onclick="sortTable('error',<?php echo $current_page . ',' . $entries_to_display; ?>)">error</th>
+						<th class="order" onclick="sortTable('error',<?php echo $current_page . ',' . $entries_to_display; ?>)">Error</th>
 					</tr>
 				</thead>
 				<tbody>
