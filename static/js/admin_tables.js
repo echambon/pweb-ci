@@ -42,8 +42,10 @@ function displayPage(current_page,order_by,desc,entries_to_display) {
 	});
 }
 
-function test() {
-	var select_list 		= document.getElementById("select_entries_display");
-	var selected_value 	= select_list.options[select_list.selectedIndex].value;
-	$("#messageContainer").empty().html(selected_value);
+function updateEntriesToDisplay(current_page,order_by,desc) {
+	var select_list 				= document.getElementById("select_entries_display");
+	var entries_to_display 	= select_list.options[select_list.selectedIndex].value;
+
+	// reload current table page
+	displayPage(current_page,order_by,desc,entries_to_display);
 }

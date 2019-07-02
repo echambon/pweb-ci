@@ -58,7 +58,7 @@ class logs_model extends CI_Model {
       $sql_query = $sql_query . " DESC";
     }
 
-    if(strcmp($limit,"all") != 0) {
+    if(strcmp($limit,"9999") != 0) {
       $sql_query = $sql_query . " LIMIT " . strval($limit);
       $sql_query = $sql_query . " OFFSET " . strval($offset);
     }

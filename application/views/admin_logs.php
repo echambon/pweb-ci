@@ -3,8 +3,6 @@
 		Navigate through connection logs. There are <b><?php echo $logs_number; ?></b> logs to display.
 	</p>
 
-	<p id="messageContainer"></p>
-
 	<p>
 		<form id="logsForm" method="post" action="/admin/logs_query">
 			<table>
@@ -15,11 +13,11 @@
 				<tr>
 					<td>Entries to display per page:</td>
 					<td>
-						<select id="select_entries_display" name="select_entries_display" onchange="test()">
+						<select id="select_entries_display" name="select_entries_display" onchange="updateEntriesToDisplay(<?php echo $current_page . ',\'' . $order_by . '\',\'' . $desc . '\''; ?>)">-->
 							<option value="10" selected="selected">10</option>
 					    <option value="50">50</option>
 					    <option value="100">100</option>
-					    <option value="all">All</option>
+					    <option value="9999">All</option>
 						</select>
 					</td>
 				</tr>
