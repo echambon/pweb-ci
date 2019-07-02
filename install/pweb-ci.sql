@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 02 juil. 2019 à 17:47
+-- Généré le :  mar. 02 juil. 2019 à 19:01
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -36,7 +36,41 @@ CREATE TABLE IF NOT EXISTS `pw_logs` (
   `ip_address` varchar(255) NOT NULL,
   `error` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=93 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `pw_logs`
+--
+
+INSERT INTO `pw_logs` (`id`, `username`, `login_date`, `ip_address`, `error`) VALUES
+(92, 'admin', '2019-07-02 20:43:52', '::1', 0),
+(91, 'admin', '2019-07-02 19:49:49', '::1', 0),
+(90, 'admin', '2019-07-02 19:49:47', '::1', 3),
+(89, 'admin', '2019-07-02 19:49:41', '::1', 0),
+(88, 'admin', '2019-07-02 19:48:15', '::1', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `pw_pages`
+--
+
+DROP TABLE IF EXISTS `pw_pages`;
+CREATE TABLE IF NOT EXISTS `pw_pages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `pw_pages`
+--
+
+INSERT INTO `pw_pages` (`id`, `name`, `url`, `title`, `content`) VALUES
+(1, 'Testpage', 'testpage', 'This is a testpage.', '&lt;h1&gt;Lorem Ipsum&lt;/h1&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque egestas eros est, a iaculis felis convallis eu. Integer vitae nunc ornare, laoreet augue id, vestibulum neque. Sed ipsum mi, tincidunt ut nisi ullamcorper, volutpat malesuada elit. Duis in mattis eros. Vivamus eu dolor magna. Nunc tincidunt enim sit amet vehicula volutpat. Nulla id ipsum feugiat, commodo magna sed, volutpat tortor.&lt;/p&gt;');
 
 -- --------------------------------------------------------
 
@@ -82,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `pw_users` (
 --
 
 INSERT INTO `pw_users` (`id`, `username`, `password`, `last_login`, `email`) VALUES
-(1, 'admin', '$2y$12$7ool1jSc/OgwKME5N6CZm.EUYINAa9Z5mQI5hzlTLcYDRN7/ZDdii', '2019-07-02 18:52:18', 'admin@domain.ext');
+(1, 'admin', '$2y$12$7ool1jSc/OgwKME5N6CZm.EUYINAa9Z5mQI5hzlTLcYDRN7/ZDdii', '2019-07-02 20:43:52', 'admin@domain.ext');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
