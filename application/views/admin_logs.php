@@ -14,8 +14,8 @@
 					<td>Entries to display per page:</td>
 					<td>
 						<select id="select_entries_display" name="select_entries_display" onchange="updateEntriesToDisplay(<?php echo $current_page . ',\'' . $order_by . '\',\'' . $desc . '\''; ?>)">-->
-							<option value="10" selected="selected">10</option>
-					    <option value="50">50</option>
+							<option value="10">10</option>
+					    <option value="50" selected="selected">50</option>
 					    <option value="100">100</option>
 					    <option value="9999">All</option>
 						</select>

@@ -96,7 +96,7 @@ class Admin extends CI_Controller {
 		$logs_number = $logs_number['count'];
 
 		// number of logs to display per page
-		$entries_to_display = 10;
+		$entries_to_display = 50;
 		if(!empty($_POST["entries_to_display"])) {
 			$entries_to_display = $_POST["entries_to_display"];
 		}
