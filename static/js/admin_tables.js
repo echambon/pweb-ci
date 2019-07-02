@@ -1,4 +1,4 @@
-function sortTable(order_by,current_page,logs_to_display) {
+function sortTable(order_by,current_page,entries_to_display) {
 	var desc = "asc";
 	if($("#table_content").hasClass("desc")) {
 		desc = "desc";
@@ -8,10 +8,10 @@ function sortTable(order_by,current_page,logs_to_display) {
 		type: 		"post",
 		url: 			"/admin/logs",
 		data: 	 	{
-								order_by 				: order_by,
-								desc 						: desc,
-								current_page 		: current_page,
-								logs_to_display : logs_to_display
+								order_by 						: order_by,
+								desc 								: desc,
+								current_page 				: current_page,
+								entries_to_display 	: entries_to_display
 							},
 		success: 	function(data) {
 			var content = $(data).find("#table_content");
@@ -23,15 +23,15 @@ function sortTable(order_by,current_page,logs_to_display) {
 	});
 }
 
-function displayPage(current_page,order_by,desc,logs_to_display) {
+function displayPage(current_page,order_by,desc,entries_to_display) {
 	$.ajax({
 		type: 		"post",
 		url: 			"/admin/logs",
 		data: 	 	{
-								current_page 		: current_page,
-								order_by 				: order_by,
-								desc 						: desc,
-								logs_to_display : logs_to_display
+								current_page 				: current_page,
+								order_by 						: order_by,
+								desc 								: desc,
+								entries_to_display 	: entries_to_display
 							},
 		success: 	function(data) {
 			var content 	= $(data).find("#table_content");

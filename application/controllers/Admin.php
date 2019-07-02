@@ -96,13 +96,13 @@ class Admin extends CI_Controller {
 		$logs_number = $logs_number['count'];
 
 		// number of logs to display per page
-		$logs_to_display = 10;
-		if(!empty($_POST["logs_to_display"])) {
-			$logs_to_display = $_POST["logs_to_display"];
+		$entries_to_display = 10;
+		if(!empty($_POST["entries_to_display"])) {
+			$entries_to_display = $_POST["entries_to_display"];
 		}
 
 		// number of pages and html line
-		$pages_number = ceil($logs_number / $logs_to_display);
+		$pages_number = ceil($logs_number / $entries_to_display);
 		// currently selected page
 		$current_page = 1;
 		if(!empty($_POST["current_page"])) {
@@ -110,16 +110,16 @@ class Admin extends CI_Controller {
 		}
 
 		// resulting offset
-		$offset = ($current_page - 1) * $logs_to_display;
+		$offset = ($current_page - 1) * $entries_to_display;
 
 		// generate pages links and apply current_page class to currently selected page
-		$pages_links = "<a onClick='displayPage(1,\"" . $order_by ."\",\"" . $desc_str ."\",\"" . $logs_to_display ."\")' " . (($current_page == 1) ? "class='current_page'" : "") . ">1</a> "; // by default, only one page and first page is selected
+		$pages_links = "<a onClick='displayPage(1,\"" . $order_by ."\",\"" . $desc_str ."\",\"" . $entries_to_display ."\")' " . (($current_page == 1) ? "class='current_page'" : "") . ">1</a> "; // by default, only one page and first page is selected
 		for($i_link = 2; $i_link <= $pages_number; $i_link++) {
-			$pages_links = $pages_links . "<a onClick='displayPage(". strval($i_link) .",\"" . $order_by ."\",\"" . $desc_str ."\",\"" . $logs_to_display ."\")' " . (($current_page == $i_link) ? "class='current_page'" : "") . ">" . strval($i_link) . "</a> ";
+			$pages_links = $pages_links . "<a onClick='displayPage(". strval($i_link) .",\"" . $order_by ."\",\"" . $desc_str ."\",\"" . $entries_to_display ."\")' " . (($current_page == $i_link) ? "class='current_page'" : "") . ">" . strval($i_link) . "</a> ";
 		}
 
 		// fetch logs
-		$logs = $this->logs_model->get_logs_ordered_with_limit("",$logs_to_display,$offset,$order_by,$desc);
+		$logs = $this->logs_model->get_logs_ordered_with_limit("",$entries_to_display,$offset,$order_by,$desc);
 		$table_content = "";
 		if(empty($logs)) {
 			$table_content = "<tr><td colspan='5'><font color='red'><i>No logs to display</i></font></td></tr>";
@@ -153,11 +153,11 @@ class Admin extends CI_Controller {
 		}
 
 		// Loading logs view
-		$data = array('table_content' 	=> $table_content,
-									'logs_number' 		=> $logs_number,
-									'pages_links' 		=> $pages_links,
-									'current_page' 		=> $current_page,
-									'logs_to_display' => $logs_to_display);
+		$data = array('table_content' 			=> $table_content,
+									'logs_number' 				=> $logs_number,
+									'pages_links' 				=> $pages_links,
+									'current_page' 				=> $current_page,
+									'entries_to_display' 	=> $entries_to_display);
 		$this->load->view('admin_logs', $data);
 
 		// loading footer
