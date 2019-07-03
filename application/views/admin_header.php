@@ -6,9 +6,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<title>Admin board</title>
 	<link rel="stylesheet" href="/static/css/admin.css">
+	<link rel="stylesheet" href="/static/css/quill.snow.css">
 	<link rel="icon" href="/static/favicon.ico" />
 	<script type="text/javascript" src="/static/js/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/static/js/quill.js"></script>
 	<script type="text/javascript" src="/static/js/admin_login.js"></script>
 	<script type="text/javascript" src="/static/js/admin_settings.js"></script>
 	<script type="text/javascript" src="/static/js/admin_tables.js"></script>

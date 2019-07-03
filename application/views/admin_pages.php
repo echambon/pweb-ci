@@ -35,8 +35,65 @@
 		</p>
   </div>
 
-	<h2 id="toggling_profile_header" class="togglingHeader toggling toggling_hidden">Create page</h2>
+	<h2 id="toggling_profile_header" class="togglingHeader toggling toggling_hidden">Create/edit page</h2>
   <div id="toggling_profile_container" class="togglingContainer toggling_hidden">
-    TODO: Quill editor comes here!
+		<form id="pagesCreationEditionForm" method=post action="/admin/page_creation_edition">
+      <p>
+        Basic website configuration:
+      </p>
+			<table>
+  			<tr>
+  				<td>Name:</td>
+  				<td><input type="text" id="page_name" name="page_name" size="50" value=""><font color="red" size="5"><b>*</b></font></td>
+          <td><i>Page name will appear in the menu, choose a short name.</i></td>
+  			</tr>
+  			<tr>
+  				<td>URL:</td>
+  				<td><input type="text" id="page_url" name="page_url" size="50" value="" disabled><font color="red" size="5"><b>*</b></font></td>
+          <td><i>This is the URL under which page will be accessible. Automatically built from name.</i></td>
+  			</tr>
+        <tr>
+  				<td>Title:</td>
+  				<td><input type="text" id="page_title" name="page_title" size="50" value=""><font color="red" size="5"><b>*</b></font></td>
+          <td><i>Page title will appear emphasized at the top of the page.</i></td>
+  			</tr>
+        <tr>
+  				<td>Order:</td>
+  				<td>
+            <select id="page_order" name="page_order">
+              <option value="1">1</option>
+            </select>
+          </td>
+          <td><i>The order in which pages appear in the menu.</i></td>
+  			</tr>
+				<tr>
+  				<td valign="top">Content:</td>
+  				<td colspan="2">
+						<div id="quillEditor">
+						</div>
+					</td>
+  			</tr>
+		  </table>
+      <input type="submit" value="Save">
+		</form>
   </div>
 </div>
+
+<!-- Quill integration -->
+<script>
+var toolbarOptions = [
+	[{'header': [2,3,false	]}],
+	['bold', 'italic', 'underline'],
+	[{ 'list': 'bullet' }],
+	[{ 'color': [] }, { 'background': [] }],
+	[{ 'align': [] }],
+	['code-block'],
+	['link', 'image']
+];
+var quill = new Quill('#quillEditor', {
+	theme: 'snow',
+	modules: {
+		toolbar: toolbarOptions
+	}
+});
+</script>
