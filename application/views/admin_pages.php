@@ -35,8 +35,8 @@
 		</p>
   </div>
 
-	<h2 id="toggling_profile_header" class="togglingHeader toggling toggling_hidden">Create/edit page</h2>
-  <div id="toggling_profile_container" class="togglingContainer toggling_hidden">
+	<h2 id="toggling_profile_header" class="togglingHeader toggling toggling_hidden toggling_visible">Create/edit page</h2>
+  <div id="toggling_profile_container" class="togglingContainer">
 		<form id="pagesCreationEditionForm" method=post action="/admin/page_creation_edition">
       <p>
         Basic website configuration:
@@ -66,14 +66,8 @@
           </td>
           <td><i>The order in which pages appear in the menu.</i></td>
   			</tr>
-				<tr>
-  				<td valign="top">Content:</td>
-  				<td colspan="2">
-						<div id="quillEditor">
-						</div>
-					</td>
-  			</tr>
 		  </table>
+			<p><div id="quillEditor"></div></p>
       <input type="submit" value="Save">
 		</form>
   </div>

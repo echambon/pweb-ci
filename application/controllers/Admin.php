@@ -252,7 +252,10 @@ class Admin extends CI_Controller {
 																							<td>".$created_by_username."</td>
 																							<td>".$page->last_modified."</td>
 																							<td>".$modified_by_username."</td>
-																							<td>todo</td>
+																							<td align='center'>
+																							<img src='/static/img/admin_edit_page.png' width='20'>
+																							<img src='/static/img/admin_delete_page.png' width='20'>
+																							</td>
 																							</tr>";
 		}
 
