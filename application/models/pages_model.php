@@ -88,6 +88,6 @@ class pages_model extends CI_Model {
     // TODO: menu order management: update page at the current $page_order, if any
 
     // execute query
-    $this->db->query("UPDATE pw_pages SET name='".$name."', url='".$url."', title='".$title."', content='".$content."', last_modified='".$last_modified."', modified_by='".$user_id."', menu_order='".$page_order."' WHERE id='".$page_id"'");
+    $this->db->query("UPDATE pw_pages SET name='".$name."', url='".$url."', title='".$title."', content='".$content."', last_modified='".$last_modified."', modified_by='".$user_id."', menu_order='".$page_order."' WHERE id='".$page_id."'");
   }
 }
