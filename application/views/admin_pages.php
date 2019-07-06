@@ -4,7 +4,25 @@
 	<h2 id="toggling_profile_header" class="togglingHeader toggling toggling_hidden toggling_visible">Website pages</h2>
   <div id="toggling_profile_container" class="togglingContainer">
 		<p>
-			TODO: form here for personalized SQL query and number of pages to display (see logs).
+			<form id="pagesForm" method="post" action="/admin/pages_query">
+				<table>
+					<tr>
+						<td>SQL query: <i>SELECT * FROM pw_pages WHERE </i></td>
+						<td><input type="text" id="sql_pages_query" name="sql_pages_query" size="50"></td>
+					</tr>
+					<tr>
+						<td>Entries to display per page:</td>
+						<td>
+							<select id="select_entries_display" name="select_entries_display" onchange="updateEntriesToDisplay(<?php echo $current_page . ',\'' . $order_by . '\',\'' . $desc . '\''; ?>)">-->
+								<option value="10" selected="selected">10</option>
+						    <option value="50">50</option>
+						    <option value="100">100</option>
+						    <option value="9999">All</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+			</form>
 		</p>
 
 		<p>

@@ -253,8 +253,8 @@ class Admin extends CI_Controller {
 																							<td>".$page->last_modified."</td>
 																							<td>".$modified_by_username."</td>
 																							<td align='center'>
-																							<img src='/static/img/admin_edit_page.png' width='20'>
-																							<img src='/static/img/admin_delete_page.png' width='20'>
+																							<a href='#'><img src='/static/img/admin_edit_page.png' width='20'></a>
+																							<a href='#'><img src='/static/img/admin_delete_page.png' width='20'></a>
 																							</td>
 																							</tr>";
 		}
