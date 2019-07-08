@@ -253,8 +253,8 @@ class Admin extends CI_Controller {
 																							<td>".$page->last_modified."</td>
 																							<td>".$modified_by_username."</td>
 																							<td align='center'>
-																							<a href='#'><img src='/static/img/admin_edit_page.png' width='20'></a>
-																							<a href='#'><img src='/static/img/admin_delete_page.png' width='20'></a>
+																							<a href='/admin/pages/?edit=".$page->id."'><img src='/static/img/admin_edit_page.png' width='20'></a>
+																							<a href='/admin/pages/?delete=".$page->id."'><img src='/static/img/admin_delete_page.png' width='20'></a>
 																							</td>
 																							</tr>";
 		}
@@ -273,9 +273,16 @@ class Admin extends CI_Controller {
 		$form_order = $form_order . "<option value=\"". $i_page ."\" selected=\"selected\">". $i_page ."</option>";
 		$form_content = "";
 
-		if(isset($_GET['id'])) {
+		// edit page
+		if(isset($_GET['edit'])) {
 			// todo: load page information, test existence and update form filling values
-			echo $_GET['id'];
+
+		}
+
+		// delete page
+		if(isset($_GET['delete'])) {
+			// todo: load page information, test existence and update form filling values
+			// todo: rather redirect to subpage with delete form?
 		}
 
 		// Loading pages view
