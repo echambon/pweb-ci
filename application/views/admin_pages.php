@@ -62,30 +62,30 @@
 			<table>
   			<tr>
   				<td>Name:</td>
-  				<td><input type="text" id="page_name" name="page_name" size="50" value=""><font color="red" size="5"><b>*</b></font></td>
+  				<td><input type="text" id="page_name" name="page_name" size="50" value="<?php echo $form_name; ?>"><font color="red" size="5"><b>*</b></font></td>
           <td><i>Page name will appear in the menu, choose a short name.</i></td>
   			</tr>
   			<tr>
   				<td>URL:</td>
-  				<td><input type="text" id="page_url" name="page_url" size="50" value="" disabled><font color="red" size="5"><b>*</b></font></td>
+  				<td><input type="text" id="page_url" name="page_url" size="50" value="<?php echo $form_url; ?>" disabled><font color="red" size="5"><b>*</b></font></td>
           <td><i>This is the URL under which page will be accessible. Automatically built from name.</i></td>
   			</tr>
         <tr>
   				<td>Title:</td>
-  				<td><input type="text" id="page_title" name="page_title" size="50" value=""><font color="red" size="5"><b>*</b></font></td>
+  				<td><input type="text" id="page_title" name="page_title" size="50" value="<?php echo $form_title; ?>"><font color="red" size="5"><b>*</b></font></td>
           <td><i>Page title will appear emphasized at the top of the page.</i></td>
   			</tr>
         <tr>
   				<td>Order:</td>
   				<td>
             <select id="page_order" name="page_order">
-              <option value="1">1</option>
+              <?php echo $form_order; ?>
             </select>
           </td>
-          <td><i>The order in which pages appear in the menu.</i></td>
+          <td><i>The order in which pages appear in the menu. By default, added as last page.</i></td>
   			</tr>
 		  </table>
-			<p><div id="quillEditor"></div></p>
+			<p><div id="quillEditor"><?php echo $form_content; ?></div></p>
       <input type="submit" value="Save">
 		</form>
   </div>

@@ -245,9 +245,9 @@ class Admin extends CI_Controller {
 			$table_content = $table_content . "<tr>
 																							<td>".$page->id."</td>
 																							<td><b>".$page->menu_order."</b></td>
-																							<td>".$page->name."</td>
-																							<td>".$page->url."</td>
-																							<td>".$page->title."</td>
+																							<td>".html_entity_decode($page->name)."</td>
+																							<td>".html_entity_decode($page->url)."</td>
+																							<td>".html_entity_decode($page->title)."</td>
 																							<td>".$page->created_on."</td>
 																							<td>".$created_by_username."</td>
 																							<td>".$page->last_modified."</td>
@@ -259,6 +259,25 @@ class Admin extends CI_Controller {
 																							</tr>";
 		}
 
+		// form edition page filling values
+		$form_name 		= "";
+		$form_url 		= "";
+		$form_title 	= "";
+		$current_number_of_pages = $this->get_pages_number();
+		$form_order 	= "";
+		for($i_page = 1; $i_page <= $current_number_of_pages['count']; $i_page++) { // for each existing page
+			//echo $i_page;
+			$form_order = $form_order . "<option value='". $i_page ."'>". $i_page ."</option>";
+		}
+		// last place is detected by default
+		$form_order = $form_order . "<option value=\"". $i_page ."\" selected=\"selected\">". $i_page ."</option>";
+		$form_content = "";
+
+		if(isset($_GET['id'])) {
+			// todo: load page information, test existence and update form filling values
+			echo $_GET['id'];
+		}
+
 		// Loading pages view
 		$data = array('table_content' 			=> $table_content,
 									'pages_number' 				=> $pages_number,
@@ -266,7 +285,12 @@ class Admin extends CI_Controller {
 									'current_page' 				=> $current_page,
 									'entries_to_display' 	=> $entries_to_display,
 									'order_by'						=> $order_by,
-									'desc' 								=> $desc_str);
+									'desc' 								=> $desc_str,
+									'form_name' 					=> html_entity_decode($form_name),
+									'form_url' 						=> html_entity_decode($form_url),
+									'form_title' 					=> html_entity_decode($form_title),
+									'form_order' 					=> $form_order,
+									'form_content' 				=> html_entity_decode($form_content));
 		$this->load->view('admin_pages',$data);
 
 		// loading footer
