@@ -1,4 +1,4 @@
-function sortTable(order_by,current_page,entries_to_display) {
+function sortTable(url,order_by,current_page,entries_to_display) {
 	var desc = "asc";
 	if($("#table_content").hasClass("desc")) {
 		desc = "desc";
@@ -6,7 +6,7 @@ function sortTable(order_by,current_page,entries_to_display) {
 
 	$.ajax({
 		type: 		"post",
-		url: 			"/admin/logs",
+		url: 			url,
 		data: 	 	{
 								order_by 						: order_by,
 								desc 								: desc,
@@ -23,10 +23,10 @@ function sortTable(order_by,current_page,entries_to_display) {
 	});
 }
 
-function displayPage(current_page,order_by,desc,entries_to_display) {
+function displayPage(url,current_page,order_by,desc,entries_to_display) {
 	$.ajax({
 		type: 		"post",
-		url: 			"/admin/logs",
+		url: 			url,
 		data: 	 	{
 								current_page 				: current_page,
 								order_by 						: order_by,
@@ -42,10 +42,10 @@ function displayPage(current_page,order_by,desc,entries_to_display) {
 	});
 }
 
-function updateEntriesToDisplay(current_page,order_by,desc) {
+function updateEntriesToDisplay(url,current_page,order_by,desc) {
 	var select_list 				= document.getElementById("select_entries_display");
 	var entries_to_display 	= select_list.options[select_list.selectedIndex].value;
 
 	// reload current table page
-	displayPage(current_page,order_by,desc,entries_to_display);
+	displayPage(url,current_page,order_by,desc,entries_to_display);
 }

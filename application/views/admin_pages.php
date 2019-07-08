@@ -13,7 +13,7 @@
 					<tr>
 						<td>Entries to display per page:</td>
 						<td>
-							<select id="select_entries_display" name="select_entries_display" onchange="updateEntriesToDisplay(<?php echo $current_page . ',\'' . $order_by . '\',\'' . $desc . '\''; ?>)">-->
+							<select id="select_entries_display" name="select_entries_display" onchange="updateEntriesToDisplay('/admin/pages',<?php echo $current_page . ',\'' . $order_by . '\',\'' . $desc . '\''; ?>)">-->
 								<option value="10" selected="selected">10</option>
 						    <option value="50">50</option>
 						    <option value="100">100</option>
@@ -33,15 +33,15 @@
 				<table id="table_content" border="1px" class="minimalistBlack">
 					<thead>
 						<tr>
-							<th class="order" onclick="sortTable('id',<?php echo $current_page . ',' . $entries_to_display; ?>)">ID</th>
-							<th class="order" onclick="sortTable('id',<?php echo $current_page . ',' . $entries_to_display; ?>)">Order</th>
-							<th class="order" onclick="sortTable('name',<?php echo $current_page . ',' . $entries_to_display; ?>)">Name</th>
-							<th class="order" onclick="sortTable('url',<?php echo $current_page . ',' . $entries_to_display; ?>)">URL</th>
-							<th class="order" onclick="sortTable('title',<?php echo $current_page . ',' . $entries_to_display; ?>)">Title</th>
-							<th class="order" onclick="sortTable('created_on',<?php echo $current_page . ',' . $entries_to_display; ?>)">Created on</th>
-							<th class="order" onclick="sortTable('created_by',<?php echo $current_page . ',' . $entries_to_display; ?>)">Created by</th>
-							<th class="order" onclick="sortTable('last_modified',<?php echo $current_page . ',' . $entries_to_display; ?>)">Last modified</th>
-							<th class="order" onclick="sortTable('modified_by',<?php echo $current_page . ',' . $entries_to_display; ?>)">Modified by</th>
+							<th class="order" onclick="sortTable('/admin/pages','id',<?php echo $current_page . ',' . $entries_to_display; ?>)">ID</th>
+							<th class="order" onclick="sortTable('/admin/pages','id',<?php echo $current_page . ',' . $entries_to_display; ?>)">Order</th>
+							<th class="order" onclick="sortTable('/admin/pages','name',<?php echo $current_page . ',' . $entries_to_display; ?>)">Name</th>
+							<th class="order" onclick="sortTable('/admin/pages','url',<?php echo $current_page . ',' . $entries_to_display; ?>)">URL</th>
+							<th class="order" onclick="sortTable('/admin/pages','title',<?php echo $current_page . ',' . $entries_to_display; ?>)">Title</th>
+							<th class="order" onclick="sortTable('/admin/pages','created_on',<?php echo $current_page . ',' . $entries_to_display; ?>)">Created on</th>
+							<th class="order" onclick="sortTable('/admin/pages','created_by',<?php echo $current_page . ',' . $entries_to_display; ?>)">Created by</th>
+							<th class="order" onclick="sortTable('/admin/pages','last_modified',<?php echo $current_page . ',' . $entries_to_display; ?>)">Last modified</th>
+							<th class="order" onclick="sortTable('/admin/pages','modified_by',<?php echo $current_page . ',' . $entries_to_display; ?>)">Modified by</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
