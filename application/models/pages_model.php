@@ -90,4 +90,16 @@ class pages_model extends CI_Model {
     // execute query
     $this->db->query("UPDATE pw_pages SET name='".$name."', url='".$url."', title='".$title."', content='".$content."', last_modified='".$last_modified."', modified_by='".$user_id."', menu_order='".$page_order."' WHERE id='".$page_id."'");
   }
+
+  /**
+  * Public function
+  *
+  * Gets page information
+  *
+  * @return	void
+  */
+  public function get_page_by_id($page_id) {
+    $query = $this->db->query("SELECT * FROM pw_pages WHERE id ='". $page_id ."'");
+    return $query->result();
+  }
 }

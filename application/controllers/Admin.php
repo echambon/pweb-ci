@@ -276,7 +276,12 @@ class Admin extends CI_Controller {
 		// edit page
 		if(isset($_GET['edit'])) {
 			// todo: load page information, test existence and update form filling values
-
+			$page_data 		= $this->pages_model->get_page_by_id($_GET['edit']);
+			$form_name 		= $page_data[0]->name;
+			$form_url 		= $page_data[0]->url;
+			$form_title 	= $page_data[0]->title;
+			// TODO $form_order
+			$form_content = html_entity_decode($page_data[0]->content);
 		}
 
 		// delete page
