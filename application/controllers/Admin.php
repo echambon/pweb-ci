@@ -264,24 +264,35 @@ class Admin extends CI_Controller {
 		$form_url 		= "";
 		$form_title 	= "";
 		$current_number_of_pages = $this->get_pages_number();
-		$form_order 	= "";
-		for($i_page = 1; $i_page <= $current_number_of_pages['count']; $i_page++) { // for each existing page
-			//echo $i_page;
-			$form_order = $form_order . "<option value='". $i_page ."'>". $i_page ."</option>";
-		}
-		// last place is detected by default
-		$form_order = $form_order . "<option value=\"". $i_page ."\" selected=\"selected\">". $i_page ."</option>";
 		$form_content = "";
 
 		// edit page
 		if(isset($_GET['edit'])) {
-			// todo: load page information, test existence and update form filling values
+			// load page data
 			$page_data 		= $this->pages_model->get_page_by_id($_GET['edit']);
-			$form_name 		= $page_data[0]->name;
-			$form_url 		= $page_data[0]->url;
-			$form_title 	= $page_data[0]->title;
-			// TODO $form_order
-			$form_content = html_entity_decode($page_data[0]->content);
+			if(!empty($page_data)) { // check existence
+				$form_name 		= $page_data[0]->name;
+				$form_url 		= $page_data[0]->url;
+				$form_title 	= $page_data[0]->title;
+				$form_order 	= "";
+				for($i_page = 1; $i_page <= $current_number_of_pages['count']; $i_page++) { // for each existing page
+					$form_order = $form_order . "<option value='". $i_page ."'";
+					if($i_page == $page_data[0]->menu_order) {
+ 						$form_order = $form_order . " selected=\"selected\"";
+					}
+					$form_order = $form_order . ">" . $i_page ."</option>";
+				}
+				$form_content = html_entity_decode($page_data[0]->content);
+			}
+		}
+		if(!isset($_GET['edit']) || empty($page_data)) {
+			$form_order 	= "";
+			for($i_page = 1; $i_page <= $current_number_of_pages['count']; $i_page++) { // for each existing page
+				$form_order = $form_order . "<option value='". $i_page ."'>". $i_page ."</option>";
+			}
+
+			// add one item to order list and set as selected
+			$form_order = $form_order . "<option value=\"". $i_page ."\" selected=\"selected\">". $i_page ."</option>";
 		}
 
 		// delete page

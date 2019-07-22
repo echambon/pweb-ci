@@ -86,7 +86,7 @@
   			</tr>
 		  </table>
 			<p><div id="quillEditor"><?php echo $form_content; ?></div></p>
-      <input type="submit" value="Save">
+      <input type="submit" value="Save">	Cancel (TODO jQuery)
 		</form>
   </div>
 </div>
