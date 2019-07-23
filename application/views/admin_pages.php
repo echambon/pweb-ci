@@ -29,6 +29,11 @@
 
 		<p>
 			<center>
+				<?php
+				if(isset($_GET['delete'])) {
+					echo "<strong>TODO deletion form here</strong>";
+				}
+				?>
 				<div id="pages_links">
 					Pages: <?php echo $pages_links; ?>
 				</div>
@@ -57,7 +62,7 @@
 
 	<h2 id="toggling_form_header" class="togglingHeader toggling toggling_hidden toggling_visible">Create/edit page</h2>
   <div id="toggling_form_container" class="togglingContainer">
-		<form id="pagesCreationEditionForm" method=post action="/admin/page_creation_edition">
+		<form id="pagesCreationEditionForm" method=post action="/admin/page_creation_edition<?php if(isset($_GET['edit'])) { echo "/?edit=" . $_GET['edit']; } ?>">
       <p>
         Basic website configuration:
       </p>

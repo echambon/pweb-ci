@@ -321,6 +321,67 @@ class Admin extends CI_Controller {
 	}
 
 	/**
+	* Public function
+	*
+	* Updates or creates page.
+	*
+	* @return	void
+	*/
+	public function page_creation_edition() {
+		$this->session_check();
+
+		// TODO check $_GET['edit']
+
+		/*// default values
+		$error 									= ADMIN_LOGIN_ERROR_EMPTY_POST;
+		$message 								= 'Empty post request';
+
+		// allow new password and email to be empty
+		if(!empty($_POST['admin_username']) && !empty($_POST['admin_current_password'])) {
+			// save admin user id
+			$userdata 			= $this->admin_model->get_user_by_username($_SESSION['user']);
+			$user_id 				= $userdata[0]->id;
+			$user_password 	= $userdata[0]->password;
+
+			// assign variables to be updated
+			$admin_username 						= $_POST['admin_username'];
+			$admin_current_password 		= $_POST['admin_current_password'];
+			$admin_new_password 				= $user_password;
+			if(!empty($_POST['admin_new_password'])) {
+				$admin_new_password 			= password_hash($_POST['admin_new_password'], PASSWORD_BCRYPT, ['cost' => 12]);
+			}
+			$admin_email 								= $_POST['admin_email'];
+
+			// check password
+			if(password_verify($admin_current_password, $user_password)) {
+				if(strcmp($_POST['admin_new_password'], $_POST['admin_new_password_repeat']) == 0) {
+					// update admin user information
+					$this->admin_model->set_user_profile(	$user_id,
+					 																			$admin_username,
+																								$admin_new_password,
+																								$admin_email);
+
+					// update session data
+					$_SESSION['user'] = $admin_username;
+
+					$error 		= NO_ERROR;
+					$message 	= 'Updated administrator profile successfully';
+				} else {
+					$error 		= ADMIN_LOGIN_ERROR_UNMATCHING_PASSWORD;
+					$message	= 'New passwords do not match';
+				}
+			} else {
+				$error 			= ADMIN_LOGIN_ERROR_INCORRECT_PASSWORD;
+				$message 		= 'Incorrect password';
+			}
+		} else {
+			header('Location: /admin/settings');
+		}
+
+		echo 	json_encode(['error' => $error, 'message' => $message]);*/
+	}
+
+	/**
 	 * Public function
 	 *
 	 * Perform existence/password checks and logs the user in using POST transmitted data.
