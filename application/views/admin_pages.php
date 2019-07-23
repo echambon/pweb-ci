@@ -3,8 +3,8 @@
 
 	<div id="test"></div>
 
-	<h2 id="toggling_profile_header" class="togglingHeader toggling toggling_hidden toggling_visible">Website pages</h2>
-  <div id="toggling_profile_container" class="togglingContainer">
+	<h2 id="toggling_pages_header" class="togglingHeader toggling toggling_hidden toggling_visible">Website pages</h2>
+  <div id="toggling_pages_container" class="togglingContainer">
 		<p>
 			<form id="pagesForm" method="post" action="/admin/pages_query">
 				<table>
@@ -55,8 +55,8 @@
 		</p>
   </div>
 
-	<h2 id="toggling_profile_header" class="togglingHeader toggling toggling_hidden toggling_visible">Create/edit page</h2>
-  <div id="toggling_profile_container" class="togglingContainer">
+	<h2 id="toggling_form_header" class="togglingHeader toggling toggling_hidden toggling_visible">Create/edit page</h2>
+  <div id="toggling_form_container" class="togglingContainer">
 		<form id="pagesCreationEditionForm" method=post action="/admin/page_creation_edition">
       <p>
         Basic website configuration:
