@@ -13,6 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script type="text/javascript" src="/static/js/quill.js"></script>
 	<script type="text/javascript" src="/static/js/admin_login.js"></script>
 	<script type="text/javascript" src="/static/js/admin_settings.js"></script>
+	<script type="text/javascript" src="/static/js/admin_pages.js"></script>
 	<script type="text/javascript" src="/static/js/admin_tables.js"></script>
 	<script type="text/javascript" src="/static/js/admin_toggling.js"></script>
 </head>

@@ -1,6 +1,8 @@
 <div id="body">
 	<p>Edit and create pages for your website. There are <b><?php echo $pages_number; ?></b> pages for this website.</p>
 
+	<div id="test"></div>
+
 	<h2 id="toggling_profile_header" class="togglingHeader toggling toggling_hidden toggling_visible">Website pages</h2>
   <div id="toggling_profile_container" class="togglingContainer">
 		<p>
@@ -86,7 +88,7 @@
   			</tr>
 		  </table>
 			<p><div id="quillEditor"><?php echo $form_content; ?></div></p>
-      <input type="submit" value="Save">	Cancel (TODO jQuery)
+      <input type="submit" value="Save">	<a href="/admin/pages">Cancel</a>
 		</form>
   </div>
 </div>
