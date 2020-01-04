@@ -1,6 +1,6 @@
 <div id="body">
 	<p>
-		UNIX server monitoring page.
+		Unix server monitoring page.
 	</p>
 
 	<p>
