@@ -26,6 +26,41 @@ class Admin extends CI_Controller {
 	}
 
 	/**
+	* Public function
+	*
+	* Server monitoring page.
+	*
+	* @return	void
+	*/
+	public function monitoring() {
+		$this->load->view('admin_header');
+		if(isset($_SESSION['user'])) {
+			// RX/TX
+			// only working on UNIX server ?
+			/*$ifconfig = shell_exec('ifconfig eth0 | grep RX\ bytes');
+			$ifconfig = str_ireplace("RX bytes:", "", $ifconfig);
+			$ifconfig = str_ireplace("TX bytes:", "", $ifconfig);
+			$ifconfig = trim($ifconfig);
+			$ifconfig = explode(" ", $ifconfig);
+			//$rxRaw = $ifconfig[0] / 1024 / 1024;
+			//$txRaw = $ifconfig[4] / 1024 / 1024;
+			//$rx = round($rxRaw, 2);
+			//$tx = round($txRaw, 2);*/
+
+			// setting data
+			$data = array('username'   => $_SESSION['user'],
+										'last_login' => $_SESSION['last_login']);
+
+			// loading views
+			$this->load->view('admin_menu');
+			$this->load->view('admin_monitoring',$data);
+		} else {
+			$this->load->view('admin_login');
+		}
+		$this->load->view('admin_footer');
+	}
+
+	/**
 	 * Public function
 	 *
 	 * Admin settings management page.
