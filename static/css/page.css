@@ -1,0 +1,15 @@
+*
+{
+	margin: 0;
+	padding: 0;
+}
+
+body
+{
+	font: 400 15px/1.8 "Lato", sans-serif;
+	font-size: 15px;
+	line-height: 25px;
+	//background-image: url("background_tile.jpg");
+	background-attachment: fixed;
+    background-position: center;
+}

@@ -20,6 +20,9 @@ class Page extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('page_header');
+		$this->load->view('page_menu');
+		$this->load->view('page_main');
+		$this->load->view('page_footer');
 	}
 }
