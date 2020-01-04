@@ -12,4 +12,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-	<h1>Test</h1>
+	<h1><?php echo $website_title; ?></h1>
+	<h2><?php echo $website_subtitle; ?></h2>
